@@ -1,0 +1,72 @@
+@import "variables.less";
+
+.button(@color: @pink) {
+  padding: 15px 35px;
+  color: @color;
+  border: 1px solid @color;
+  border-radius: 3px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: @white;
+    background: @color;
+    cursor: pointer;
+  }
+}
+
+.solid-button(@color: @pink) {
+  .button(@color);
+  background: @color;
+  color: @white;
+  &:hover {
+    background: @white;
+    color: @color;
+  }
+}
+
+.pink-button {
+  .button;
+}
+
+.white-button {
+  .button(@white);
+}
+
+.white-button:hover {
+  color: @pink;
+}
+
+.green-button {
+  .button(@green);
+}
+
+.pink-solid-button {
+  .solid-button;
+}
+
+.green-solid-button {
+  .solid-button(@green);
+}
+
+.gray-solid-button {
+  .solid-button(@mediumGray);
+}
+
+.light-blue-button {
+  .button(@lightBlue);
+}
+
+.light-blue-solid-button {
+  .solid-button(@lightBlue);
+}
+
+.btn.btn-info.active {
+  background-image: url("../images/ajax-loader.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  span {
+    opacity: 0;
+  }
+}

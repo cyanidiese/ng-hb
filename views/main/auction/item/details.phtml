@@ -1,0 +1,231 @@
+<h3 class="no-results" ng-hide="vm.item">{{ (vm.initialization) ? 'Loading...' : 'No Item Found' }}</h3>
+
+<div class="item-details item-open items-auction-open"
+     ng-show="vm.item"
+     data-handbid-item-details-block="63392" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-handbid-auction-guid="cf6080a6-72e2-4634-b234-fe3122a1b502" data-item-id="63392" data-item-auction-id="959" data-item-is-ticket="no" data-item-is-donation="no">
+
+
+    <div class="back-to-previous-container">
+        <a class="back-to-previous" href="#/auctions/{{ vm.auction.key }}/">
+            View All Items
+        </a>
+    </div>
+
+    <div class="row detail-bar">
+
+        <div class="col-md-7">
+            <div class="images">
+                <ul class="slider-nav" data-slider-nav-id="item-image-slider">
+                    <a class="slider-arrow prev" href="#" data-slider-nav-direction="prev">Previous</a>
+                    <a class="slider-arrow next" href="#" data-slider-nav-direction="next">Next</a>
+                </ul>
+
+                <div class="slider-content" data-slider-nav-id="item-image-slider" data-slider-progress="">
+                    <div class="image" ng-repeat="image in vm.item.images" data-slider-nav-key="item-image-{{ image.itemImageGuid }}">
+                        <img ng-src="{{ ((image.itemImageGuid != '') ? 'https://ucarecdn.com/'+image.itemImageGuid+'/-/preview/650x500/-/setfill/e7e7e7/-/crop/650x500/center/-/quality/lightest/' : '' ) }}">
+                    </div>
+                    <div class="slider-progress-bar" style="width: 0.23086%; overflow: hidden;"></div></div>
+
+
+                <div style="display:none;" data-handbid-item-banner="bidpad" class="item-banner live-item" data-handbid-box-id="63392">This item is only
+                    available in the live auction.
+                </div>
+                <div style="display:none;" data-handbid-item-banner="live" class="item-banner live-item" data-handbid-box-id="63392">This item is only
+                    available in the live auction.
+                </div>
+                <div style="display:none;" data-handbid-item-banner="losing" class="item-banner losing" data-handbid-box-id="63392">You are losing this
+                    item.
+                </div>
+                <div style="display:none;" data-handbid-item-banner="winning" class="item-banner winning" data-handbid-box-id="63392">You are winning this item.
+                </div>
+                <div style="display:none;" data-handbid-item-banner="sold" class="item-banner winning" data-handbid-box-id="63392">This item has already been SOLD!
+                </div>
+            </div>
+
+            <ul class="slider-nav auto-open" data-slider-nav-id="item-image-slider">
+                <a class="circle"  ng-repeat="image in vm.item.images"
+                   data-slider-nav-key="item-image-{{ image.itemImageGuid }}" data-slider-nav-item="">Circle</a>
+            </ul>
+        </div>
+
+        <div class="col-md-5 buttons-and-titles">
+            <h2 class="name" data-handbid-item-attribute="name" data-change-attribute="name">{{ vm.item.name }}</h2>
+            <h3 class="category" data-handbid-item-attribute="categoryName">{{ vm.item.categoryName }}</h3>
+            <ul class="horizontal-details not-for-live-auctions row" style="">
+
+                <li class="bids col-md-4 col-xs-3"><em data-handbid-item-attribute="bidCount">0</em>Bids
+                </li>
+                <li class="increment col-md-4 col-xs-5"><em>
+                        <span class="handbidAuctionCurrency" title="USD">$</span>
+                        <span class="incrementSpan">50</span></em>Increment
+                </li>
+                <li class="min col-md-4 col-xs-4"><em class=" itemValueBox63392 ">
+                        <span class="handbidAuctionCurrency" title="USD">$</span>
+                        <span data-change-attribute="value">5500</span></em>Value
+                </li>
+            </ul>
+
+            <input type="hidden" data-item-check-status-auction-id="959" value="open">
+            <input type="hidden" data-item-check-status-item-id="63392" value="open">
+            <input type="hidden" data-item-check-is-live-item-id="63392" value="no">
+            <input type="hidden" data-item-check-is-bidpad-item-id="63392" value="no">
+            <input type="hidden" data-item-check-available-item-id="63392" value="0">
+
+            <div data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-item-nobidding-id="63392" style=" display:none; ">
+                <div class="row"><h4 class="no-bidding-message">Item is not open for bidding</h4></div>
+            </div>
+            <div data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-item-is-sold-id="63392" style=" display:none; ">
+                <div class="row"><h4 class="no-bidding-message">This item has already been SOLD!</h4></div>
+            </div>
+            <div data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-item-is-live-id="63392" style=" display:none; ">
+                <div class="row"><h4 class="no-bidding-message only-live-auctions"><b>Live Auction Item</b><br>This item is only available in the live auction at the event. Contact the auction manager on when and where this will happen</h4></div>
+            </div>
+            <div data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-item-is-bidpad-id="63392" style=" display:none; ">
+                <div class="row"><h4 class="no-bidding-message only-live-auctions"><b>Live Only</b><br>This item is only available using BidPad. Contact the auction manager about this opportunity</h4></div>
+            </div>
+            <div data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392" data-item-bidding-id="63392" style="">
+
+
+                <div class="row bid-controls">
+
+                    <div class="col-md-3 col-xs-3 bid-down">
+                        <a href="" class="green-button button isBiddable" data-handbid-bid-button="down" style="">-</a>
+                    </div>
+
+                    <div class="bid-amount col-md-6 col-xs-6">
+                        <span class="handbidAuctionCurrency" title=""></span><span data-handbid-bid-amount="" data-handbid-onlybid-amount="" data-change-attribute="minimumBidAmount">500</span></div>
+                    <div class="col-md-3 col-xs-3 bid-up">
+                        <a href="" class="green-button button  isBiddable" data-handbid-bid-button="up" style="">+</a>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+
+
+                    <div class="col-xs-6">
+                        <a class="proxy-bid gray-solid-button handbid-modal-link loading-span-button" href="" data-handbid-modal-key="proxy"><span>Set Max Bid</span></a>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <a class="bid-now green-solid-button  loading-span-button" href="" data-handbid-bid-button="bid"><span>Bid Now</span></a>
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 BINButton BINItem63392  BINAvailable ">
+                        <a class="buy-now pink-solid-button loading-span-button" href="" data-handbid-bid-button="buyItNow" data-handbid-buynow-price="7500"><span>Buy Now For $<em data-change-attribute="buyNowPrice">7500</em></span></a>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="handbid-modal modal fade proxy-bid-dialog" tabindex="-1" role="dialog" data-handbid-modal-key="proxy" data-handbid-bid="" data-handbid-item-key="a-picture-is-worth-a-1000-words-63392">
+                <div class="modal-dialog">
+                    <div class="row">
+                        <h3>Set a Max Bid<br>on this item</h3>
+                        <a href="#" class="modal-close proxy-bid-dialog-close" data-dismiss="modal" aria-label="Close">×</a>
+                        <p>Handbid will bid for you up to this amount</p>
+                    </div>
+                    <div class="row bid-controls">
+                        <div class="col-xs-12">
+                            <ul class="horizontal-details row">
+
+                                <li class="bids col-md-4 col-xs-3"><em data-change-attribute="bidCount">0</em>Bids</li>
+                                <li class="increment col-md-4 col-xs-5"><em><span class="handbidAuctionCurrency" title=""></span><span id="bidIncrement" data-change-attribute="bidIncrement">50</span></em>Increment</li>
+                                <li class="min minimalBidAmount col-md-4 col-xs-4"><em><span class="handbidAuctionCurrency" title=""></span><span id="currentPrice" data-change-attribute="minimumBidAmount">500</span></em>Min Bid</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-3 bid-down">
+                            <a href="" class="green-button button max-bid-down" data-handbid-bid-button="down">-</a>
+                        </div>
+
+                        <div class="bid-amount minimalBidAmount col-xs-6"><span class="handbidAuctionCurrency" title=""></span><span data-handbid-bid-amount="" data-handbid-maxbid-amount="" data-change-attribute="minimumBidAmount">500</span></div>
+                        <div class="col-xs-3 bid-up">
+                            <a href="" class="green-button button max-bid-up" data-handbid-bid-button="up">+</a>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="submit-proxy-bid col-xs-12">
+                            <a class="proxy-bid button green-solid-button  loading-span-button" href="" data-handbid-bid-button="proxy" data-data-item-id-maxbid="63392"><span>Set Max Bid</span></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="bidItemId" value="63392">
+            <input type="hidden" id="bidAuctionId" value="959">
+            <input type="hidden" id="bidUserId" value="29551">
+            <input type="hidden" id="apiEndpointsAddress" value="https://st-rest.hand.bid/">
+            <input type="hidden" id="bidNonce" name="nonce" value="e789e49753">
+
+            <div class="handbid-share-bar">
+                <a class="icon facebook" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+
+                <a class="icon google-plus" href="https://plus.google.com/share?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">g+</a>
+
+                <a class="icon twitter" href="https://www.twitter.com/share?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Tweet</a>
+
+                <a class="icon pinterest" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F&amp;description=Handbid+Auction" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Share on Pinterest</a>
+                <a class="icon email" href="mailto:?subject=Handbid+Auction&amp;body=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F" title="Share by Email">Email</a>
+            </div>            </div>
+
+    </div>
+    <div class="row additional">
+
+        <ul class="slider-nav col-md-12 auto-open" data-slider-nav-id="item-details">
+
+            <li>
+                <a data-slider-nav-key="donor" class="active-slide">Donor</a>
+            </li>
+
+            <li>
+                <a data-slider-nav-key="description" class="">Description</a>
+            </li>
+
+            <li>
+                <a data-slider-nav-key="bids" class="">History</a>
+            </li>
+            <li>
+                <a data-slider-nav-key="comments" class="">Comments</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="slider-content" data-slider-nav-id="item-details">
+
+        <div class="additional big-content active-slide" data-slider-nav-key="donor" data-handbid-item-attribute="donor">
+            Bradford Portraits                </div>
+
+
+        <div class="additional big-content" data-slider-nav-key="description" data-handbid-item-attribute="description">
+
+            Fair Market Value : 5500<br><br>                                            Family Portrait session for a 20" wall portrait on canvas. Includes a one-night star ay the 5-Star luxurious Ritz-Carlton Westchester in New York or the Eau Resort in Palm Beach, Florida.<br>
+            <br>
+            <h5>Fine Print</h5>Portraits of family or individual (no pets.) Winner must contact Bradford Portraits for a mutually agreed upon date and location. Package does not include transportation.
+        </div>
+
+        <div class="additional big-content bid-history-container-63392" data-slider-nav-key="bids" data-bids-nonce="0a14cfb3d9">
+
+            <ul class="simple-list bid-history bid-history-item-63392" data-no-items-text="No bids yet! You could be the first!">
+                <p class="center-text">No bids yet! You could be the first!</p>
+            </ul>                </div>
+
+        <div class="additional comments" data-slider-nav-key="comments">
+
+            <div class="fb-comments fb_iframe_widget" data-href="http://handbid.loc//auctions/celebration-of-hope/item/a-picture-is-worth-a-1000-words-63392/" data-numposts="5" data-colorscheme="light" fb-xfbml-state="rendered"><span style="height: 180px; width: 550px;"><iframe id="f3542bb990e783c" name="f1a04931e443448" scrolling="no" title="Facebook Social Plugin" class="fb_ltr" src="https://www.facebook.com/plugins/comments.php?api_key=276355612383707&amp;channel_url=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FLcj5EtQ5qmD.js%3Fversion%3D42%23cb%3Df3361e1b86acd78%26domain%3Dhandbid.loc%26origin%3Dhttp%253A%252F%252Fhandbid.loc%252Ffa4532f0573ebc%26relation%3Dparent.parent&amp;colorscheme=light&amp;href=http%3A%2F%2Fhandbid.loc%2F%2Fauctions%2Fcelebration-of-hope%2Fitem%2Fa-picture-is-worth-a-1000-words-63392%2F&amp;locale=en_US&amp;numposts=5&amp;sdk=joey&amp;skin=light&amp;version=v2.0&amp;width=550" style="border: none; overflow: hidden; height: 180px; width: 550px;"></iframe></span></div>            </div>
+
+    </div>
+
+
+</div>
+
+{{ vm.item | json }}

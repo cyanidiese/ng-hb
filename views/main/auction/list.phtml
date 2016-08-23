@@ -1,1 +1,61 @@
-some list <h4>MEGA <i>something</i></h4>
+<div class="section-nav auction-list">
+    Auctions <a href="#/organizations">| Organizations</a>
+</div>
+
+<div class="row sort-bar auction-item-list" style="transition: none; margin-bottom: 15px;">
+
+    <div class="category-cover-cheating"></div>
+
+    <div class="col-md-6 col-xs-6 fancy-search-wrapper">
+
+        <form class="fancy-search" method="get">
+            <button type="submit">Search Auctions</button>
+            <input class="query categories-query" type="search" name="search" placeholder="Search Auctions" value="">
+            <a class="reset" href="#" style="display: none">X</a>
+        </form>
+
+    </div>
+</div>
+
+<div class="sort-bar auction-list">
+
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-6 legend">
+        <a ng-repeat="(key, value) in vm.statuses"
+           class="{{ key }}" ng-class="{'selected' : (key == vm.current_status)}"
+           ng-click="vm.selectAuctionsByStatus(key)">
+            <span class="box"></span>{{ key }}
+        </a>
+    </div>
+
+    <div class="col-md-3 select-wrapper">
+
+    </div>
+</div>
+
+<h3 class="no-results" ng-show="(vm.auctions.length == 0 || vm.loading)">{{ (vm.loading) ? 'Loading...' : 'No Auctions Found' }}</h3>
+
+<div class="row simple-box-row auctions"  ng-show="!(vm.auctions.length == 0 || vm.loading)" ng-repeat="chunk in vm.auctions_chunks">
+
+
+    <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="auction in chunk">
+
+        <div handbid-auction-box="auction"></div>
+
+    </div>
+
+
+</div>
+
+<ul class="page pagination">
+
+    <li><a href="/auctions/?auctions%5Bpage%5D=0" class="selected">1</a></li>
+
+    <li><a href="/auctions/?auctions%5Bpage%5D=1" class="">2</a></li>
+
+    <li class="next"><a href="/auctions/?auctions%5Bpage%5D=1">Next &gt;</a></li>
+    <li class="last"><a href="/auctions/?auctions%5Bpage%5D=1">Last &gt;&gt;</a></li>
+</ul>

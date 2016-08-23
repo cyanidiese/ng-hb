@@ -1,0 +1,561 @@
+.handbid-fatal-error {
+  * {
+    display: none;
+  }
+
+  .handbid-fatal-error {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: rgba(233, 77, 112, 1);
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
+    * {
+      display: block;
+    }
+  }
+}
+
+
+.powered-by-handbid {
+  display: inline-block;
+  height: 55px;
+  width: 130px;
+  background: url('../images/powered-by-handbid.svg') right center no-repeat;
+  text-indent: -999em;
+  overflow: hidden;
+}
+
+.loading-span-button {
+  &.active {
+    background-image: url("../images/ajax-loader.gif") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: none !important;
+    em,
+    span {
+      visibility: hidden !important;
+    }
+  }
+}
+
+.edit-profile select {
+  text-decoration: none !important;
+  border: none;
+}
+
+.table-receipt-summary {
+  th {
+    text-align: right;
+    font-weight: bold;
+    &.total {
+      font-size: 130%;
+      text-transform: uppercase;
+    }
+  }
+  td.receipt-total {
+    font-size: 130%;
+    color: #c90000;
+  }
+}
+
+.invoice-title {
+  font-size: 17px;
+  white-space: inherit;
+  overflow: visible;
+  text-overflow: initial;
+  margin-bottom: 20px;
+}
+
+.bid-price-toggle.button.ghosted-out {
+  opacity: 0.2;
+}
+
+.message-row {
+  margin-bottom: 5px;
+  .message-status {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &.message-status-general {
+      background-image: url("../images/dashboard/ic_mail.png");
+    }
+    &.message-status-was_winning,
+    .message-status-winning {
+      background-image: url("../images/dashboard/ic_winning.png");
+    }
+    &.message-status-was_losing,
+    .message-status-outbid,
+    .message-status-losing{
+      background-image: url("../images/dashboard/ic_losing.png");
+    }
+    &.message-status-purchase {
+      background-image: url("../images/dashboard/ic_purchased.png");
+    }
+  }
+}
+
+.btn.btn-default.undefined {
+  display: none !important;
+}
+
+
+
+.active-auctions-list-area.loading-messages,
+.messages-list-area.loading-messages,
+.receipts-list-area.loading-messages {
+  background: url("../images/ajax-loader.gif") no-repeat center center !important;
+  min-height: 100px !important;
+  .simple-list {
+    display: none !important;
+  }
+}
+
+.no-bidding-message {
+  color: #4cb0ce;
+  font-size: 29px;
+  margin: 50px 0;
+  &.only-live-auctions {
+    margin: 0;
+  }
+}
+
+[data-handbid-bid-button] {
+  text-decoration: none !important;
+}
+
+.notice-connection-title {
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.notice-connection-switch {
+  display: inline-block;
+  background-color: #a94442;
+  color: #ebccd1;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px;
+  line-height: 15px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.notice-connection-tip {
+  font-weight: bold;
+  text-align: center;
+  display: none;
+}
+
+.handbid-timer-top-notice.notice-collapsed:hover,
+.handbid-no-connection-notice.notice-collapsed:hover {
+  opacity: 0.7 !important;
+}
+
+.handbid-timer-top-notice.notice-collapsed .ui-pnotify-container,
+.handbid-no-connection-notice.notice-collapsed .ui-pnotify-container {
+  padding: 0;
+}
+
+.handbid-timer-top-notice span[data-handbid-timer] {
+  display: none;
+}
+
+.handbid-timer-top-notice.notice-collapsed .auction-timer-place {
+  display: none;
+}
+
+.handbid-timer-top-notice.notice-collapsed span[data-handbid-timer] {
+  display: inline-block;
+}
+
+.handbid-timer-top-notice.notice-collapsed .toggle-timer-notice .glyphicon-chevron-up,
+.handbid-timer-top-notice .toggle-timer-notice .glyphicon-chevron-down {
+  display: none;
+}
+
+.handbid-timer-top-notice.notice-collapsed .toggle-timer-notice .glyphicon-chevron-down,
+.handbid-timer-top-notice .toggle-timer-notice .glyphicon-chevron-up {
+  display: block;
+}
+
+.toggle-timer-notice {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 2px 5px 5px;
+}
+
+.notice-collapsed .toggle-timer-notice {
+  top: 4px;
+  padding: 4px 5px;
+}
+
+.initial-loading-space {
+  background: url("../images/ajax-loader-round.gif") no-repeat center center !important;
+  * {
+    visibility: hidden !important;
+  }
+}
+
+.handbid-bidding-notice {
+  .ui-pnotify-closer {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 99999;
+  }
+  .ui-pnotify-title {
+    margin: 0;
+  }
+}
+
+.handbid-notice-image-container {
+  padding-left: 0;
+  a {
+    width: 80px;
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 40px;
+    }
+  }
+}
+
+.handbid-notice-text-container {
+  padding: 0;
+  .notice-text-title {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 2px;
+  }
+}
+
+.remaining-inventory {
+  margin-top: 15px;
+  display: inline-block;
+}
+
+[data-is-hidden-item] {
+  display: none !important;
+}
+
+.auction-timer-place {
+  width: 370px;
+  margin: 10px auto;
+  overflow: hidden;
+  .circle-place {
+    .handbid-circle-timer {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .numbers-place {
+    .number-cont {
+      text-align: center;
+      border-right: 1px solid #aaa;
+      &.secs-number-cont {
+        border-right: none;
+      }
+      em {
+        font-size: 30px;
+        display: block;
+        font-weight: bold;
+      }
+      span {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.ui-pnotify-container.alert-danger,
+.ui-pnotify-container.alert-success,
+.ui-pnotify-container.alert-info {
+  color: #fff !important;
+  border: none;
+}
+
+.ui-pnotify-container.alert-danger {
+  background-color: #e94d70 !important;
+}
+
+.ui-pnotify-container.alert-success {
+  background-color: #9fb94a !important;
+}
+
+.ui-pnotify-container.alert-info {
+  background-color: rgba(76, 176, 206, 1) !important;
+}
+
+.handbid-broadcast-notice .ui-pnotify-container.alert-info {
+  background-color: rgba(22, 114, 179, 1) !important;
+}
+
+.ui-pnotify-container a {
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.ui-pnotify-title {
+  font-weight: bold !important;
+  text-align: left;
+}
+
+.ui-pnotify-container,
+.ui-pnotify-container .btn {
+  border-radius: 0 !important;
+}
+
+.handbid-left-padding-notice {
+  .ui-pnotify-container {
+    .ui-pnotify-text {
+      padding-left: 85px;
+    }
+  }
+}
+
+.ui-pnotify-icon .glyphicon {
+  font-size: 70px !important;
+  font-weight: 100;
+  margin-right: 10px;
+  min-height: 80px;
+
+  &.small-envelope{
+    font-size: 17px !important;
+    min-height: 20px;
+  }
+}
+
+.ui-pnotify-icon .glyphicon {
+  font-size: 70px !important;
+  font-weight: 100;
+  margin-right: 10px;
+  min-height: 80px;
+}
+
+.handbid-paddle-number-notice .ui-pnotify-icon .glyphicon,
+.handbid-send-message-notice .ui-pnotify-icon .glyphicon {
+  font-size: 40px !important;
+  font-weight: 100;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
+.handbid-send-message-notice .ui-pnotify-text {
+  display: none !important;
+}
+
+.showIfNoCCAllowed,
+.invoiceNoCCAllowed .hideIfNoCCAllowed {
+  display: none !important;
+}
+
+.invoiceNoCCAllowed .showIfNoCCAllowed {
+  display: block !important;
+}
+
+.itemValueBoxHidden {
+  visibility: hidden !important;
+}
+
+.message-no-isotope-results {
+  text-transform: none;
+}
+
+.global-footer .toggle-info {
+  display: none !important;
+}
+
+.BINButton {
+  display: none !important;
+  &.BINAvailable {
+    display: block !important;
+  }
+}
+
+[data-hide-if-sold] [data-handbid-item-attribute="quantitySold"],
+[data-hide-if-sold] [data-handbid-item-attribute="totalSoldItems"] {
+  visibility: hidden !important;
+}
+
+.slider-content .simple-list-container {
+  padding: 0;
+}
+
+.slider-content .simple-list > li {
+  width: 100%;
+  margin: 0;
+}
+
+.handbid-credit-card-footer-form {
+  display: none;
+}
+
+.public-contacts {
+  .iw-label,
+  .data {
+    font-size: 20px !important;
+    margin-bottom: 15px;
+  }
+  .iw-label {
+    font-weight: bold;
+  }
+}
+
+.simple-list-container .simple-list p {
+  display: none;
+  &:first-child {
+    display: block;
+  }
+}
+
+.testimonials-wrapper {
+  overflow: hidden;
+}
+
+.testimonials-container {
+  width: 69%;
+  float: left;
+  padding-right: 25px;
+  .single-testimonial-block {
+    display: none;
+    &.active-testimonial-block {
+      display: block;
+    }
+  }
+  img {
+    max-height: 100px;
+  }
+  h3 {
+    color: #4cb0ce;
+    font-weight: bolder;
+    font-size: 2em;
+  }
+  .testimonial-person {
+    display: block;
+    font-weight: bolder;
+    font-size: 1.8em;
+    margin-top: 20px;
+  }
+  .testimonial-position {
+    display: block;
+    font-size: 1.4em;
+  }
+  .testimonial-date {
+    display: block;
+    font-size: 1.2em;
+    color: #1A72B3;
+    font-weight: bold;
+  }
+  .testimonials-header {
+    font-size: 1.8em;
+    color: #999;
+    text-align: left;
+    margin: 0 0 25px;
+  }
+  .testimonial-content {
+    text-align: justify;
+    margin-top: 25px;
+  }
+  .testimonials-list {
+    text-align: left;
+    li {
+      margin-bottom: 5px;
+      a img {
+        max-height: 90px;
+        max-width: 90px;
+        margin-bottom: 30px;
+      }
+    }
+    .testimonial-title {
+      color: #4cb0ce;
+      font-size: 20px;
+    }
+    .testimonial-date {
+      font-weight: lighter;
+    }
+  }
+
+  &.container-align-center {
+    text-align: center;
+  }
+}
+
+.testimonials-sidebar {
+  width: 30%;
+  float: right;
+  padding-left: 25px;
+  border-left: 1px solid #bbb;
+  div.widget {
+    margin-bottom: 20px;
+  }
+  h4 {
+    font-weight: bolder;
+    text-align: left;
+    text-transform: uppercase;
+    &.started-header {
+      font-size: 1.5em;
+      color: #4cb0ce;
+    }
+  }
+  .start-auction-button {
+    color: #D94A67;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 10px;
+    &:hover {
+      background: #D94A67;
+      color: #fff;
+    }
+  }
+}
+
+ul.testimonials-list {
+  margin-bottom: 40px;
+  list-style-type: none;
+  li {
+    a {
+      color: #999;
+      overflow: hidden;
+      display: block;
+      &:hover {
+        opacity: 0.7;
+      }
+
+      img {
+        max-height: 70px;
+        max-width: 70px;
+        float: left;
+        margin: 0 15px 15px 0;
+      }
+      .testimonial-date {
+        display: block;
+        font-size: 14px;
+        color: #777;
+      }
+      .testimonial-teaser {
+        display: block;
+        color: #999;
+        font-size: 16px;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.widget_perfect_quote .perfect-quotes li {
+  font-size: 0.9em;
+}

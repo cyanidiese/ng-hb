@@ -1,0 +1,80 @@
+<div class="section-nav">
+    <a href="#/auctions">Auctions |</a> Organizations
+</div>
+
+<div class="row sort-bar auction-item-list" style="transition: none; margin-bottom: 15px;">
+
+    <div class="category-cover-cheating"></div>
+
+    <div class="col-md-6 col-xs-6 fancy-search-wrapper">
+
+        <form class="fancy-search" method="get">
+            <button type="submit">Search Organizations</button>
+            <input class="query categories-query" type="search" name="search" placeholder="Search organizations"
+                   value="">
+            <a class="reset" href="#" style="display: none">X</a>
+        </form>
+
+    </div>
+</div>
+
+<h3 class="no-results" ng-hide="vm.organizations.length">{{ (vm.initialization) ? 'Loading...' : 'No Organizations Found' }}</h3>
+
+<div class="row simple-box-row organizations" ng-show="vm.organizations.length" ng-repeat="chunk in vm.organizations_chunks">
+
+
+    <div class="col-md-3 col-sm-6 col-xs-12"  ng-repeat="organization in chunk">
+
+        <div class="simple-box">
+
+            <div class="header">
+            </div>
+
+            <div class="body">
+
+                <div class="highlight"></div>
+
+                <div class="contents">
+
+                    <a href="#/organizations/{{ organization.key }}/" class="image-wrapper">
+                        <img class="logo"
+                             ng-src="{{ organization.logo }}-/preview/220x80/">
+                    </a>
+
+                    <h3><a href="#/organizations/{{ organization.key }}/"> {{ organization.name }}</a></h3>
+
+                    <ul class="details">
+
+                        <li class="total-auctions"><span class="icon"></span>{{ organization.activeAuctions }} Auction{{ (organization.activeAuctions != 1)? 's' : '' }}</li>
+
+                        <li class="addy">
+                            <span class="icon"></span>
+                            {{ organization.organizationAddressCity }}, {{ organization.organizationAddressProvince }}</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<ul class="page pagination">
+
+    <li><a href="/organizations/?orgs%5Bpage%5D=0" class="selected">1</a></li>
+
+
+    <li><a href="/organizations/?orgs%5Bpage%5D=1" class="">2</a></li>
+
+
+    <li><a href="/organizations/?orgs%5Bpage%5D=2" class="">3</a></li>
+
+
+    <li class="next"><a href="/organizations/?orgs%5Bpage%5D=1">Next &gt;</a></li>
+    <li class="last"><a href="/organizations/?orgs%5Bpage%5D=18">Last &gt;&gt;</a></li>
+</ul>

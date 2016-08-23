@@ -1,0 +1,24 @@
+<div>
+    <a href="/">Home</a><span> : </span>
+
+    <a href="#/auctions/"
+       ng-show="(type == 'auction' || type == 'auctions' || type == 'item')">{{ (type == 'auctions') ? 'Find your Handbid auction' : 'Auctions' }}</a>
+    <a href="#/organization/"
+       ng-show="(type == 'organization' || type == 'organizations')">{{ (type == 'auctions') ? 'Find your organization' : 'Organizations' }}</a>
+
+    <span
+        ng-show="(type == 'auction' || type == 'auctions' || type == 'organization' || type == 'organizations' || type == 'item')"> : </span>
+
+    <a href="#/auctions/{{ (type == 'auction') ? inst.key : inst.auction.key }}/"
+       ng-show="(type == 'auction' || type == 'item')">{{ (type == 'auction') ? inst.name : inst.auction.name }}</a>
+    <a href="#/organizations/{{ inst.key }}/"
+       ng-show="(type == 'organization')">{{ inst.name }}</a>
+
+    <span
+        ng-show="(type == 'item')"> : </span>
+
+    <a href="#/auctions/{{ inst.key }}/item/{{ inst.key }}/"
+       ng-show="(type == 'item')">{{ inst.name }}</a>
+
+</div>
+

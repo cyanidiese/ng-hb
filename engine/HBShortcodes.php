@@ -12,25 +12,46 @@ class HBShortcodes extends StdClass
     {
 
         $shortcodes = array(
-            "handbid_main" => "handbidMain",
+            "handbid_main" => "main",
+            "handbid_header_title" => "headerTitle",
+            "handbid_breadcrumb" => "breadcrumbs",
+            "handbid_bidder_profile" => "bidderProfile",
+            "handbid_auction_timer" => "auctionTimer",
         );
 
         foreach ($shortcodes as $name => $callback)
         {
-            add_shortcode($name, array('HBShortcodes', $callback));
+            if(method_exists('HBShortcodes', $callback))
+            {
+                add_shortcode($name, array('HBShortcodes', $callback));
+            }
         }
 
     }
 
-    public static function handbidMain($atts)
+    public static function main($atts)
     {
+        return HBView::view('index');
+    }
 
-//        $auctions = HBAuctionsFactory::getAll();
-//        $bidd = HBBidderFactory::login('121212', '121212');
-//        return '<pre>' . print_r($auctions, true) . '</pre>' . '<pre>' . print_r($bidd, true) . '</pre>';
+    public static function headerTitle($atts)
+    {
+        return HBView::view('header.title');
+    }
 
-        return HBView::view('main.auction.list');
+    public static function breadcrumbs($atts)
+    {
+        return HBView::view('header.breadcrumbs');
+    }
 
+    public static function bidderProfile($atts)
+    {
+        return HBView::view('header.profile.main');
+    }
+
+    public static function auctionTimer($atts)
+    {
+        return '';
     }
 
 }

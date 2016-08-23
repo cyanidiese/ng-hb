@@ -1,0 +1,151 @@
+<div class="sticky">
+    <div id="bidder-info-load" class="bidder-info-load" data-profile-paddle-number="104" data-auction="7"
+         data-auction-status="open" data-auction-name="Handbid Demo Auction" data-auction-key="handbid-demo-auction"
+         data-auction-guid="81E8754D-445F-4DE6-9DD4-F223C94C49E4"
+         data-auction-image="https://www.ucarecdn.com/3e8a0420-97a0-419a-88bc-131ab6d98b98/"
+         data-auction-organization-key="handbid" data-auction-organization-name="HandBid" data-profile-id="29551"
+         data-load="ecff160f38" data-paddle-nonce="157f21fb7c" style="transition: none;">
+
+        <div class="bidder-info-container" data-dashboard-profile-id="29551">
+            <div class="container container-fluid underlined">
+                <div class="row meta">
+                    <div class="pin col-md-6 col-xs-6">
+                        <label>Pin Code:</label>
+                        74722
+                    </div>
+                    <div class="auction col-md-4 col-xs-4">
+                        Handbid Demo Auction
+                    </div>
+                    <div class="paddle-number col-md-2 col-xs-2">
+                        Paddle # : <span data-profile-current-paddle-number=""
+                                         data-paddle-for-auction-7="">104            </span></div>
+                </div>
+                <div class="slider-nav " data-slider-nav-id="bidder-dashboard" data-toggle-mode="true">
+
+                    <div class="slider-nav-mobile row">
+
+                        <div class="col-xs-9">
+
+                            <div class="pin col-md-12 col-xs-12">
+                                <label>Pin Code:</label>
+                                74722
+                            </div>
+
+                            <a class="col-xs-12 profile-user-info profile-opener"
+                               data-slider-nav-key="profile-user-info">
+                                <span>B. PaliD</span>
+                            </a>
+
+                        </div>
+                        <a class="col-xs-3 total-spent">
+                            <span><span class="handbidAuctionCurrency" title="USD">$</span> <span
+                                    data-handbid-stats-grand-total="">865</span></span>
+                            <label>Total</label>
+                        </a>
+                    </div>
+
+                    <div class="slider-nav-desktop row stats-bar">
+                        <a class="col-md-2 col-xs-8 profile-user-info profile-opener"
+                           data-slider-nav-key="profile-user-info">
+                            <span>B. PaliD</span>
+                        </a>
+                        <a class="col-md-2 col-sm-3 col-xs-3 profile-max-bids " data-slider-nav-key="profile-max-bids">
+                            <label>Max Bids</label>
+                            <span data-handbid-stats-num-proxies="">0</span>
+                        </a>
+                        <a class="col-md-2 col-sm-3 col-xs-3 profile-winning " data-slider-nav-key="profile-winning">
+                            <label>Winning</label>
+                            <span data-handbid-stats-num-winning="">1</span>
+                        </a>
+                        <a class="col-md-2 col-sm-3 col-xs-3 profile-losing " data-slider-nav-key="profile-losing">
+                            <label>Losing</label>
+                            <span data-handbid-stats-num-losing="">0</span>
+                        </a>
+                        <a class="col-md-2 col-sm-3 col-xs-3 profile-purchases "
+                           data-slider-nav-key="profile-purchases">
+                            <label>Purchases</label>
+                            <span data-handbid-stats-num-purchases="">6</span>
+                        </a>
+                        <a class="col-md-2 col-xs-12 total-spent ">
+                            <label>Total</label>
+                            <span><span class="handbidAuctionCurrency" title="USD">$</span><span
+                                    data-handbid-stats-grand-total="">865</span></span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="full-width-container bidder-info-body">
+                <div class="container container-fluid">
+                    <div class="slider-content" data-slider-nav-id="bidder-dashboard">
+
+                        <div class="row" data-slider-nav-key="profile-user-info">
+                            <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+
+                            <div class="col-md-3 col-xs-12">
+                                <ul class="quick-links slider-nav auto-open"
+                                    data-slider-nav-id="bidder-dashboard-inner">
+                                    <li><a data-slider-nav-key="user-profile">User Profile</a></li>
+                                    <li><a data-slider-nav-key="update-credit-card">Update Credit Card</a></li>
+                                    <li><a data-slider-nav-key="bidder-notifications">Messages</a></li>
+                                    <li><a data-slider-nav-key="see-my-receipt">View Receipts/Invoices <span
+                                                class="badge unpaidInvoicesCountContainer" style="">2</span></a></li>
+                                    <li><a href="/handbid-logout" class="handbid-logout-link">Logout</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-9 col-xs-12">
+                                <div class="slider-content" data-slider-nav-id="bidder-dashboard-inner">
+
+                                    <div class="" data-slider-nav-key="user-profile" data-slider-href="">
+                                        @include('header.profile.details.update-form')
+                                    </div>
+
+                                    <div class="" data-slider-nav-key="update-credit-card">
+                                        @include('header.profile.details.credit-cards')
+                                    </div>
+
+                                    <div class="" data-slider-nav-key="bidder-notifications">
+                                        @include('header.profile.details.messages')
+                                    </div>
+
+                                    <div class="" data-slider-nav-key="see-my-receipt">
+                                        @include('header.profile.details.receipts')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" data-slider-nav-key="profile-max-bids">
+                            <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                            <div class="col-md-12 simple-list-container">
+                                @include('header.profile.auction.max-bids')
+                            </div>
+                        </div>
+
+                        <div class="row" data-slider-nav-key="profile-winning">
+                            <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                            <div class="col-md-12 simple-list-container">
+                                @include('header.profile.auction.winning')
+                            </div>
+                        </div>
+
+                        <div class="row" data-slider-nav-key="profile-losing">
+                            <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                            <div class="col-md-12 simple-list-container">
+                                @include('header.profile.auction.losing')
+                            </div>
+                        </div>
+
+                        <div class="row" data-slider-nav-key="profile-purchases">
+                            <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                            <div class="col-md-12 simple-list-container">
+                                @include('header.profile.auction.purchases')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

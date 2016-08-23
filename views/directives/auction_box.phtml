@@ -1,0 +1,39 @@
+<div class="simple-auction-box simple-box status-{{ auction.status }}">
+
+    <div class="header">
+        {{ auction.totalItems }} item{{ (auction.totalItems > 1) ? 's' : '' }}
+    </div>
+
+    <div class="body">
+
+        <div class="highlight"></div>
+
+        <div class="contents">
+
+            <div class="image-wrapper">
+                <img class="logo" height="80"
+                     ng-src="{{ auction.imageUrl }}-/preview/220x80/">
+            </div>
+
+            <h3><a href="#/auctions/{{ auction.key }}/">{{ auction.name }}</a></h3>
+
+            <ul class="details">
+
+                <li class="org"><span class="icon"></span>
+                    <a href="#/organizations/{{ auction.organizationKey }}/">{{ auction.organizationName }}</a>
+                </li>
+                <li class="addy" ng-show="(auction.vanityAddress.trim() != '')"><span class="icon"></span>{{
+                    auction.vanityAddress }}
+                </li>
+                <li class="timer">
+                    <span class="icon"></span>
+                    Closes: 4.10 11:47 am EDT
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
