@@ -1,0 +1,19 @@
+<ul class="page pagination" ng-hide="(countNumberOfPages() < 2)">
+
+    <li class="last" ng-if="(current > 1)"><a ng-click="setMinPage()">&lt;&lt; First</a></li>
+    <li class="next" ng-if="(current > 1)"><a ng-click="decrementPage()">&lt; Prev</a></li>
+
+    <li ng-repeat-start="(prevPage, page) in getArrayOfPages()" ng-if="(prevPage < page - 1)">
+        <span class="disabled">...</span>
+    </li>
+    <li ng-repeat-end>
+        <a class="item"
+           ng-class="(page == current) ? ' selected ' : '' "
+           ng-click="setNewCurrentPage(page)">
+            {{ page }}
+        </a>
+    </li>
+
+    <li class="next" ng-if="(current < countNumberOfPages())"><a ng-click="incrementPage()">Next &gt;</a></li>
+    <li class="last" ng-if="(current < countNumberOfPages())"><a ng-click="setMaxPage()">Last &gt;&gt;</a></li>
+</ul>

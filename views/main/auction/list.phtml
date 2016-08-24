@@ -50,12 +50,10 @@
 
 </div>
 
-<ul class="page pagination">
+<handbid-pagination
+    current="vm.auctions_page"
+    maximum="vm.auctions_per_page"
+    total="vm.auctions_total"
+></handbid-pagination>
 
-    <li><a href="/auctions/?auctions%5Bpage%5D=0" class="selected">1</a></li>
 
-    <li><a href="/auctions/?auctions%5Bpage%5D=1" class="">2</a></li>
-
-    <li class="next"><a href="/auctions/?auctions%5Bpage%5D=1">Next &gt;</a></li>
-    <li class="last"><a href="/auctions/?auctions%5Bpage%5D=1">Last &gt;&gt;</a></li>
-</ul>

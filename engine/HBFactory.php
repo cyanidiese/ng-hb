@@ -11,7 +11,7 @@ class HBFactory
         global $wp_version;
 
         $url = self::makeRequestUrl($endpoint, $params);
-//echo $url;
+
         $args = array(
             'timeout'     => 30,
             'httpversion' => '1.0',

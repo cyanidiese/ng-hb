@@ -18,19 +18,38 @@ class HBAuctionsFactory extends HBFactory
             $args['status'] = $params['statuses'];
         }
 
-        return self::get('auction', $args);
+        $auctions = self::get('auction', $args);
+
+        return $auctions;
+    }
+
+    public static function getCount($params)
+    {
+        $args = [ ];
+
+        if(!empty($params['statuses'])){
+            $args['status'] = $params['statuses'];
+        }
+
+        $count = self::get('auction/count', $args);
+
+        return $count;
     }
 
     public static function getBySlug($slug)
     {
-        return self::get('publicauction/slug/'.$slug, []);
+        $auction = self::get('publicauction/slug/'.$slug, []);
+
+        return $auction;
     }
 
     public static function search($search)
     {
-        return self::get('publicauction', [
+        $auctions = self::get('publicauction', [
             'search' => $search
         ]);
+
+        return $auctions;
     }
 
 }

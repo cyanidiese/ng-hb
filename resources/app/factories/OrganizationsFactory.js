@@ -10,13 +10,21 @@
     function organizations($http){
         return {
             getOrganizations: getOrganizations,
+            getOrganizationsCount: getOrganizationsCount,
             getOrganizationBySlug: getOrganizationBySlug
         };
 
-        function getOrganizations(){
+        function getOrganizations(data){
 
-            return $http.get(hb_routes.factories.organizations.list).then(function(response)
+            return $http.post(hb_routes.factories.organizations.list, data).then(function(response)
             {
+                return response.data;
+            });
+        }
+
+        function getOrganizationsCount() {
+
+            return $http.post(hb_routes.factories.organizations.count).then(function (response) {
                 return response.data;
             });
         }

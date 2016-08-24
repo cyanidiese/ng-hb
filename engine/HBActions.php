@@ -24,12 +24,14 @@ class HBActions
                 'directives' => [
                     'title' => 'directiveTitle',
                     'breadcrumbs' => 'directiveBreadcrumbs',
+                    'pagination' => 'directivePagination',
                     'auction_box' => 'directiveAuctionBox',
                 ],
             ],
             'factories' => [
                 'auctions' => [
                     'list' => 'auctionsFactoryGetList',
+                    'count' => 'auctionsFactoryGetCount',
                     'details' => 'auctionsFactoryGetDetails',
                     'items' => [
                         'details' => 'itemsFactoryGetDetails',
@@ -37,6 +39,7 @@ class HBActions
                 ],
                 'organizations' => [
                     'list' => 'organizationsFactoryGetList',
+                    'count' => 'organizationsFactoryGetCount',
                     'details' => 'organizationsFactoryGetDetails',
                 ],
             ]
@@ -54,18 +57,18 @@ class HBActions
         {
             foreach ($actions as $key => $method)
             {
-                $prefix = $prefix . '_' . $key;
+                $new_prefix = $prefix . '_' . $key;
 
                 if (is_array($method))
                 {
-                    self::actions($method, $prefix);
+                    self::actions($method, $new_prefix);
                 }
                 else
                 {
                     if (method_exists('HBActions', $method))
                     {
-                        add_action('wp_ajax_' . $prefix, ['HBActions', $method]);
-                        add_action('wp_ajax_nopriv_' . $prefix, ['HBActions', $method]);
+                        add_action('wp_ajax_' . $new_prefix, ['HBActions', $method]);
+                        add_action('wp_ajax_nopriv_' . $new_prefix, ['HBActions', $method]);
                     }
 
                 }
@@ -86,17 +89,17 @@ class HBActions
         {
             foreach ($actions as $key => $method)
             {
-                $prefix = $prefix . '_' . $key;
+                $new_prefix = $prefix . '_' . $key;
 
                 if (is_array($method))
                 {
-                    $result[$key] = self::actionsLinks($method, $prefix);
+                    $result[$key] = self::actionsLinks($method, $new_prefix);
                 }
                 else
                 {
                     if (method_exists('HBActions', $method))
                     {
-                        $result[$key] = add_query_arg(['action' => $prefix], admin_url('admin-ajax.php'));
+                        $result[$key] = add_query_arg(['action' => $new_prefix], admin_url('admin-ajax.php'));
                     }
 
                 }
@@ -155,9 +158,9 @@ class HBActions
         exit;
     }
 
-    public static function directiveBreadcrumbs()
+    public static function directivePagination()
     {
-        echo HBView::view('directives.breadcrumbs');
+        echo HBView::view('directives.pagination');
 
         exit;
     }
@@ -176,6 +179,15 @@ class HBActions
         $params = self::getPostData();
 
         echo HBAuctionsFactory::getList($params);
+
+        exit;
+    }
+
+    public static function auctionsFactoryGetCount()
+    {
+        $params = self::getPostData();
+
+        echo HBAuctionsFactory::getCount($params);
 
         exit;
     }
@@ -204,7 +216,16 @@ class HBActions
 
     public static function organizationsFactoryGetList()
     {
-        echo HBOrganizationsFactory::getList();
+        $params = self::getPostData();
+
+        echo HBOrganizationsFactory::getList($params);
+
+        exit;
+    }
+
+    public static function organizationsFactoryGetCount()
+    {
+        echo HBOrganizationsFactory::getCount();
 
         exit;
     }

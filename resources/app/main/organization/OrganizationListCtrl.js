@@ -11,29 +11,48 @@
 
         var vm = this;
 
-        vm.initialization = true;
+        vm.loading = true;
 
         vm.intermediator = intermediator;
 
         vm.intermediator.setPageType('organizations');
+        vm.intermediator.setPageObject(false);
 
         vm.organizations = [];
         vm.organizations_chunks = [];
 
+        vm.organizations_per_page = 24;
+
+        vm.organizations_page = 1;
+
+        vm.organizations_total = 0;
+
         getOrganizations();
+        getOrganizationsCount();
 
         //##################################################
 
         function getOrganizations()
         {
-            organizations.getOrganizations().then(function(data)
+            var data = {
+                page : vm.organizations_page,
+                limit : vm.organizations_per_page
+            };
+
+            organizations.getOrganizations(data).then(function(data)
             {
-                vm.initialization = false;
+                vm.loading = false;
                 vm.organizations = data;
 
-                vm.intermediator.setPageObject(false);
-
                 splitOrganizations();
+            });
+        }
+
+        function getOrganizationsCount()
+        {
+            organizations.getOrganizationsCount().then(function(data)
+            {
+                vm.organizations_total = data.count;
             });
         }
 
@@ -45,6 +64,12 @@
                 vm.organizations_chunks.push(vm.organizations.slice(i,i+chunk));
             }
         }
+
+
+        $scope.$watch('vm.organizations_page', function(current, original) {
+
+            getOrganizations();
+        });
     }
 
 })();

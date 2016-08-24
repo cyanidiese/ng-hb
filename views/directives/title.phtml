@@ -3,10 +3,10 @@
         Find your Handbid auction
     </div>
     <div ng-show="(type =='auction')">
-        {{ inst.name }}<span class="under">Aug 1st 7:47 am — 7th 11:47 am | 2016 MDT</span>
+        {{ inst.name }}<span class="under">{{ inst.auctionHeaderTimes }}</span>
     </div>
     <div ng-show="(type =='item')">
-        {{ inst.auction.name }}<span class="under">Aug 1st 7:47 am — 7th 11:47 am | 2016 MDT</span>
+        {{ inst.auction.name }}<span class="under">{{ inst.auctionHeaderTimes }}</span>
     </div>
     <div ng-show="(type =='organizations')">
         Find your organization

@@ -3,7 +3,7 @@
 
     angular
         .module('handbidDirectives')
-        .directive('lunchPagination', PaginationDirective);
+        .directive('handbidPagination', PaginationDirective);
 
 
     function PaginationDirective(){
@@ -14,7 +14,7 @@
                 maximum: '=',
                 total: '='
             },
-            templateUrl: app_templates.directives.pagination,
+            templateUrl: hb_routes.views.directives.pagination,
             replace: true,
             link: function($scope, elem, attr, ctrl) {
 
@@ -23,16 +23,49 @@
                 };
 
                 $scope.getArrayOfPages = function(){
-                    var pages = [];
-                    for(var i = 1; i <= $scope.countNumberOfPages(); i++){
-                        pages.push(i);
+                    var pages = {};
+                    var maxCount = $scope.countNumberOfPages();
+                    var prevIndex = 0;
+
+                    for(var i = 1; i <= maxCount; i++){
+                        if(
+                            (i == 1) ||
+                            (i == 2) ||
+                            (i == 3) ||
+                            (i == $scope.current - 1) ||
+                            (i == $scope.current) ||
+                            (i == $scope.current + 1) ||
+                            (i == maxCount - 2) ||
+                            (i == maxCount - 1) ||
+                            (i == maxCount)
+                        ){
+                            pages[prevIndex] = i;
+                            prevIndex = i;
+                        }
+
                     }
                     return pages;
                 };
 
                 $scope.setNewCurrentPage = function(page){
                     $scope.current = page;
-                }
+                };
+
+                $scope.incrementPage = function(){
+                    $scope.current++;
+                };
+
+                $scope.decrementPage = function(){
+                    $scope.current--;
+                };
+
+                $scope.setMaxPage = function(){
+                    $scope.current = $scope.countNumberOfPages();
+                };
+
+                $scope.setMinPage = function(){
+                    $scope.current = 1;
+                };
             }
         };
     }

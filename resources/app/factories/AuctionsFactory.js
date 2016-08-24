@@ -11,12 +11,20 @@
 
         return {
             getAuctions: getAuctions,
+            getAuctionsCount: getAuctionsCount,
             getAuctionBySlug: getAuctionBySlug
         };
 
         function getAuctions(data) {
 
             return $http.post(hb_routes.factories.auctions.list, data).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getAuctionsCount(data) {
+
+            return $http.post(hb_routes.factories.auctions.count, data).then(function (response) {
                 return response.data;
             });
         }

@@ -16,13 +16,16 @@
         vm.intermediator = intermediator;
 
         vm.intermediator.setPageType('auctions');
+        vm.intermediator.setPageObject(false);
 
         vm.auctions = [];
         vm.auctions_chunks = [];
 
-        vm.auctions_per_page = 8;
+        vm.auctions_per_page = 24;
 
         vm.auctions_page = 1;
+
+        vm.auctions_total = 0;
 
         vm.statuses = {
             current : ['open', 'extended', 'preview', 'presale', 'ending'],
@@ -37,12 +40,15 @@
         vm.selectAuctionsByStatus = selectAuctionsByStatus;
 
         getAuctions();
+        getAuctionsCount();
 
         //##################################################
 
-        function getAuctions()
+        function getAuctions(paginated)
         {
-            vm.loading = true;
+            if(!paginated) {
+                vm.loading = true;
+            }
 
             var data = {
                 statuses : vm.statuses[vm.current_status].join(','),
@@ -56,9 +62,21 @@
 
                 vm.auctions = data;
 
-                vm.intermediator.setPageObject(false);
-
                 splitAuctions();
+            });
+        }
+
+        function getAuctionsCount()
+        {
+            vm.loading = true;
+
+            var data = {
+                statuses : vm.statuses[vm.current_status].join(',')
+            };
+
+            auctions.getAuctionsCount(data).then(function(data)
+            {
+                vm.auctions_total = data.count;
             });
         }
 
@@ -76,10 +94,16 @@
             if(vm.current_status != status)
             {
                 vm.current_status = status;
-                vm.auctions_page = 0;
+                vm.auctions_page = 1;
+                vm.auctions_total = 0;
                 getAuctions();
+                getAuctionsCount();
             }
         }
+
+        $scope.$watch('vm.auctions_page', function(current, original) {
+            getAuctions(true);
+        });
     }
 
 })();

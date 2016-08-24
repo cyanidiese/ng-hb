@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<h3 class="no-results" ng-hide="vm.organizations.length">{{ (vm.initialization) ? 'Loading...' : 'No Organizations Found' }}</h3>
+<h3 class="no-results" ng-hide="vm.organizations.length">{{ (vm.loading) ? 'Loading...' : 'No Organizations Found' }}</h3>
 
 <div class="row simple-box-row organizations" ng-show="vm.organizations.length" ng-repeat="chunk in vm.organizations_chunks">
 
@@ -64,17 +64,8 @@
 
 </div>
 
-<ul class="page pagination">
-
-    <li><a href="/organizations/?orgs%5Bpage%5D=0" class="selected">1</a></li>
-
-
-    <li><a href="/organizations/?orgs%5Bpage%5D=1" class="">2</a></li>
-
-
-    <li><a href="/organizations/?orgs%5Bpage%5D=2" class="">3</a></li>
-
-
-    <li class="next"><a href="/organizations/?orgs%5Bpage%5D=1">Next &gt;</a></li>
-    <li class="last"><a href="/organizations/?orgs%5Bpage%5D=18">Last &gt;&gt;</a></li>
-</ul>
+<handbid-pagination
+    current="vm.organizations_page"
+    maximum="vm.organizations_per_page"
+    total="vm.organizations_total"
+></handbid-pagination>

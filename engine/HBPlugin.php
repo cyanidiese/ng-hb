@@ -104,7 +104,6 @@ class HBPlugin
 
         $params = json_encode(["secure" => true, "cookie" => '']);
         ?>
-
         <script>
             var hb_routes = <?php echo json_encode(HBActions::actionsLinks())?>,
                 auctionChannelId = '<?php echo ''; ?>',
