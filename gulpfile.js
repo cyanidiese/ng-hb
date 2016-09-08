@@ -43,6 +43,7 @@ gulp.task('js', function() {
         'resources/app/directives/BreadcrumbsDirective.js',
         'resources/app/directives/PaginationDirective.js',
         'resources/app/directives/AuctionBoxDirective.js',
+        'resources/app/directives/ItemBoxDirective.js',
 
         'resources/app/factories/factories.js',
         'resources/app/factories/AuctionsFactory.js',

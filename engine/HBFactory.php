@@ -29,7 +29,7 @@ class HBFactory
 
         $body = wp_remote_retrieve_body($response);
 
-        return $body;
+        return json_decode($body);
     }
 
     public function post($endpoint, $params, $data = [])
@@ -56,8 +56,11 @@ class HBFactory
 
         $body = wp_remote_retrieve_body($response);
 
-        $header = wp_remote_retrieve_headers($response);
+        return json_decode($body);
+    }
 
-        return $body;
+    public static function response($result = [])
+    {
+        return json_encode($result);
     }
 }

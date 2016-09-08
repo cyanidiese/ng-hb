@@ -172,7 +172,7 @@
   }
 }
 
-.simple-box[data-for-sale] .box-flag {
+.simple-box.for-sale-status .box-flag {
   display: block;
 }
 
@@ -195,7 +195,7 @@
   }
 }
 
-.simple-box[data-live] .box-flag {
+.simple-box.location-item-status-live .box-flag {
   background: @orange;
   display: block;
 
@@ -204,7 +204,7 @@
   }
 }
 
-.simple-box[data-bidpad] .box-flag {
+.simple-box.location-item-status-bidpad .box-flag {
   background: @orange;
   display: block;
 
@@ -213,7 +213,7 @@
   }
 }
 
-.simple-box[data-handbid-item-box-status="losing"] .box-flag {
+.simple-box.win-item-status-losing .box-flag {
   background: rgba(233, 77, 112, 0.8);
   display: block;
 
@@ -222,7 +222,7 @@
   }
 }
 
-.simple-box[data-handbid-item-box-status="winning"] .box-flag {
+.simple-box.win-item-status-winning .box-flag {
   background: @green;
   display: block;
 
@@ -674,8 +674,9 @@
 .item-list.isotope {
   .simple-box {
     width: 31%;
-    margin-bottom: 20px;
     transition: none;
+    float: left;
+    margin: 0 1% 20px 1%;
   }
 }
 

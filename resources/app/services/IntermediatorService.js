@@ -14,7 +14,8 @@
             setPageType: setPageType,
             getPageType: getPageType,
             setPageObject: setPageObject,
-            getPageObject: getPageObject
+            getPageObject: getPageObject,
+            getAuctionTimeRanges: getAuctionTimeRanges
         };
 
         function setPageType (pageType) {
@@ -31,6 +32,10 @@
 
         function getPageObject () {
             return _pageObject;
+        }
+
+        function getAuctionTimeRanges (auction) {
+            return '';
         }
     }
 

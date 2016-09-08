@@ -26,6 +26,7 @@ class HBActions
                     'breadcrumbs' => 'directiveBreadcrumbs',
                     'pagination' => 'directivePagination',
                     'auction_box' => 'directiveAuctionBox',
+                    'item_box' => 'directiveItemBox',
                 ],
             ],
             'factories' => [
@@ -165,9 +166,23 @@ class HBActions
         exit;
     }
 
+    public static function directiveBreadcrumbs()
+    {
+        echo HBView::view('directives.breadcrumbs');
+
+        exit;
+    }
+
     public static function directiveAuctionBox()
     {
         echo HBView::view('directives.auction_box');
+
+        exit;
+    }
+
+    public static function directiveItemBox()
+    {
+        echo HBView::view('directives.item_box');
 
         exit;
     }

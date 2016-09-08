@@ -18,9 +18,21 @@ class HBAuctionsFactory extends HBFactory
             $args['status'] = $params['statuses'];
         }
 
+        if(!empty($params['search'])){
+            $args['search'] = $params['search'];
+        }
+
         $auctions = self::get('auction', $args);
 
-        return $auctions;
+        if(is_array($auctions) && !empty($auctions))
+        {
+            foreach($auctions as $i => $auction)
+            {
+                $auctions[$i] = HBHelpers::makeAuctionTimes($auction);
+            }
+        }
+
+        return self::response($auctions);
     }
 
     public static function getCount($params)
@@ -31,16 +43,22 @@ class HBAuctionsFactory extends HBFactory
             $args['status'] = $params['statuses'];
         }
 
+        if(!empty($params['search'])){
+            $args['search'] = $params['search'];
+        }
+
         $count = self::get('auction/count', $args);
 
-        return $count;
+        return self::response($count);
     }
 
     public static function getBySlug($slug)
     {
         $auction = self::get('publicauction/slug/'.$slug, []);
 
-        return $auction;
+        $auction = HBHelpers::makeAuctionTimes($auction);
+
+        return self::response($auction);
     }
 
     public static function search($search)
@@ -49,7 +67,16 @@ class HBAuctionsFactory extends HBFactory
             'search' => $search
         ]);
 
-        return $auctions;
+
+        if(is_array($auctions) && !empty($auctions))
+        {
+            foreach($auctions as $i => $auction)
+            {
+                $auctions[$i] = HBHelpers::makeAuctionTimes($auction);
+            }
+        }
+
+        return self::response($auctions);
     }
 
 }

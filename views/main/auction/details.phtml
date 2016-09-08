@@ -1,6 +1,7 @@
 <h3 class="no-results" ng-hide="vm.auction">{{ (vm.initialization) ? 'Loading...' : 'No Auction Found' }}</h3>
 
-<div class="auction-details open" ng-show="vm.auction" data-handbid-auction-guid="{{vm.auction.auctionGuid}}">
+<div class="auction-details {{vm.auction.status}}" ng-show="vm.auction"
+     data-handbid-auction-guid="{{vm.auction.auctionGuid}}">
     <div class="container container-fluid detail-banner-wrapper">
         <div class="detail-banner"
              style="background-image: url('{{vm.auction.bannerImage}}-/preview/1140x280/')">
@@ -10,27 +11,7 @@
         </div>
         <div class="controls">
 
-            <div class="handbid-share-bar">
-                <a class="icon facebook"
-                   href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fhandbid-demo-auction%2F"
-                   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
-
-                <a class="icon google-plus"
-                   href="https://plus.google.com/share?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fhandbid-demo-auction%2F"
-                   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">g+</a>
-
-                <a class="icon twitter"
-                   href="https://www.twitter.com/share?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fhandbid-demo-auction%2F"
-                   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Tweet</a>
-
-                <a class="icon pinterest"
-                   href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fhandbid-demo-auction%2F&amp;description=Handbid+Auction"
-                   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Share
-                    on Pinterest</a>
-                <a class="icon email"
-                   href="mailto:?subject=Handbid+Auction&amp;body=http%3A%2F%2Fhandbid.loc%2Fauctions%2Fhandbid-demo-auction%2F"
-                   title="Share by Email">Email</a>
-            </div>
+            @include('main.auction._parts.share_bar')
             <span class="buttons">
             <a href="#" class="button pink-button register" data-handbid-connect="" style="display: none;">Register</a>
 
@@ -38,219 +19,11 @@
 <a class="button pink-button handbid-modal-link purchase-tickets" data-handbid-credit-cards-need=""
    data-handbid-modal-key="tickets-form" data-handbid-tickets="">Buy Tickets</a>
 
-<div class="handbid-modal modal fade tickets-modal" tabindex="-1" role="dialog" data-handbid-modal-key="tickets-form"
-     data-handbid-tickets="">
-    <div class="modal-dialog">
-        <h3>Event Tickets / Registration</h3>
-        <a href="#" class="modal-close" data-dismiss="modal" aria-label="Close">×</a>
 
-
-                        <div class="tickets-container">
-
-                                            <div class="row ticket-row" data-handbid-ticket-row="34732"
-                                                 data-handbid-params-box="34732">
-                            <div class="ticket" data-handbid-ticket-block="" data-handbid-ticket-id="34732"
-                                 data-handbid-ticket-price="10" data-handbid-ticket-step="1">
-                                <div class="col-sm-8 ticket-part-container no-padding-left">
-                                    <h4 class="ticket-title"><span data-handbid-ticket-title="">Child Admission</span>
-                                        &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                                     title="USD">$</span><span
-                                                data-handbid-ticket-buynow="">10</span></span>
-                                    </h4>
-
-                                    <p class="ticket-quantity">(admits <span data-handbid-ticket-quant="">4</span>
-                                        people)</p>
-                                    <p class="ticket-description" data-handbid-ticket-description="">This ticket admits one child</p>
-
-
-                                </div>
-                                <div class="col-sm-4 ticket-part-container no-padding-right tickets-are-sold"
-                                     style="display:none">
-                                    <h4>SOLD OUT</h4>
-                                </div>
-                                <div
-                                    class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 ticket-part-container no-padding-right tickets-are-available"
-                                    style="">
-                                    <div class="col-xs-4 no-padding">
-                                        <a href="" class="bid-price-toggle bid-down green-button button ghosted-out"
-                                           data-handbid-ticket-button="down">-</a>
-                                    </div>
-
-                                    <div class="buy-quantity col-xs-4 no-padding"><span data-handbid-ticket-quantity="">0</span>
-                                        <input type="hidden" data-handbid-tickets-remaining="" value="4">
-                                    </div>
-
-                                    <div class="col-xs-4 ticket-quantity-up no-padding">
-                                        <a href="" class="bid-price-toggle bid-up green-button button "
-                                           data-handbid-ticket-button="up">+</a>
-                                    </div>
-
-                                    <div class="col-xs-12 ticket-remaining-inventory-cont no-padding">
-                            <span class="remaining-inventory" data-handbid-ticket-quant-remaining="">4 available</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                                                <div class="row ticket-row" data-handbid-ticket-row="358"
-                                                     data-handbid-params-box="358">
-                            <div class="ticket" data-handbid-ticket-block="" data-handbid-ticket-id="358"
-                                 data-handbid-ticket-price="1" data-handbid-ticket-step="1">
-                                <div class="col-sm-8 ticket-part-container no-padding-left">
-                                    <h4 class="ticket-title"><span data-handbid-ticket-title="">Drink Ticket</span>
-                                        &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                                     title="USD">$</span><span
-                                                data-handbid-ticket-buynow="">1</span></span>
-                                    </h4>
-
-                                    <p class="ticket-quantity">(admits <span data-handbid-ticket-quant="">-1</span>
-                                        people)</p>
-                                    <p class="ticket-description" data-handbid-ticket-description="">&nbsp;One drink ticket good for wine or beer at any bar.</p>
-
-
-                                </div>
-                                <div class="col-sm-4 ticket-part-container no-padding-right tickets-are-sold"
-                                     style="display:none">
-                                    <h4>SOLD OUT</h4>
-                                </div>
-                                <div
-                                    class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 ticket-part-container no-padding-right tickets-are-available"
-                                    style="">
-                                    <div class="col-xs-4 no-padding">
-                                        <a href="" class="bid-price-toggle bid-down green-button button ghosted-out"
-                                           data-handbid-ticket-button="down">-</a>
-                                    </div>
-
-                                    <div class="buy-quantity col-xs-4 no-padding"><span data-handbid-ticket-quantity="">0</span>
-                                        <input type="hidden" data-handbid-tickets-remaining="" value="-1">
-                                    </div>
-
-                                    <div class="col-xs-4 ticket-quantity-up no-padding">
-                                        <a href="" class="bid-price-toggle bid-up green-button button "
-                                           data-handbid-ticket-button="up">+</a>
-                                    </div>
-
-                                    <div class="col-xs-12 ticket-remaining-inventory-cont no-padding">
-                            <span class="remaining-inventory"
-                                  data-handbid-ticket-quant-remaining="">Unlimited quantity</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                                                <div class="row ticket-row" data-handbid-ticket-row="42125"
-                                                     data-handbid-params-box="42125">
-                            <div class="ticket" data-handbid-ticket-block="" data-handbid-ticket-id="42125"
-                                 data-handbid-ticket-price="75" data-handbid-ticket-step="1">
-                                <div class="col-sm-8 ticket-part-container no-padding-left">
-                                    <h4 class="ticket-title"><span
-                                            data-handbid-ticket-title="">Early Bird Family Ticket</span>
-                                        &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                                     title="USD">$</span><span
-                                                data-handbid-ticket-buynow="">75</span></span>
-                                    </h4>
-
-                                    <p class="ticket-quantity">(admits <span data-handbid-ticket-quant="">-1</span>
-                                        people)</p>
-                                    <p class="ticket-description" data-handbid-ticket-description=""></p>
-
-
-                                </div>
-                                <div class="col-sm-4 ticket-part-container no-padding-right tickets-are-sold"
-                                     style="display:none">
-                                    <h4>SOLD OUT</h4>
-                                </div>
-                                <div
-                                    class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 ticket-part-container no-padding-right tickets-are-available"
-                                    style="">
-                                    <div class="col-xs-4 no-padding">
-                                        <a href="" class="bid-price-toggle bid-down green-button button ghosted-out"
-                                           data-handbid-ticket-button="down">-</a>
-                                    </div>
-
-                                    <div class="buy-quantity col-xs-4 no-padding"><span data-handbid-ticket-quantity="">0</span>
-                                        <input type="hidden" data-handbid-tickets-remaining="" value="-1">
-                                    </div>
-
-                                    <div class="col-xs-4 ticket-quantity-up no-padding">
-                                        <a href="" class="bid-price-toggle bid-up green-button button "
-                                           data-handbid-ticket-button="up">+</a>
-                                    </div>
-
-                                    <div class="col-xs-12 ticket-remaining-inventory-cont no-padding">
-                            <span class="remaining-inventory"
-                                  data-handbid-ticket-quant-remaining="">Unlimited quantity</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                                                <div class="row ticket-row" data-handbid-ticket-row="46648"
-                                                     data-handbid-params-box="46648">
-                            <div class="ticket" data-handbid-ticket-block="" data-handbid-ticket-id="46648"
-                                 data-handbid-ticket-price="200" data-handbid-ticket-step="1">
-                                <div class="col-sm-8 ticket-part-container no-padding-left">
-                                    <h4 class="ticket-title"><span data-handbid-ticket-title="">VIP Ticket</span>
-                                        &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                                     title="USD">$</span><span
-                                                data-handbid-ticket-buynow="">200</span></span>
-                                    </h4>
-
-                                    <p class="ticket-quantity">(admits <span data-handbid-ticket-quant="">5</span>
-                                        people)</p>
-                                    <p class="ticket-description" data-handbid-ticket-description=""></p>
-
-
-                                </div>
-                                <div class="col-sm-4 ticket-part-container no-padding-right tickets-are-sold"
-                                     style="display:none">
-                                    <h4>SOLD OUT</h4>
-                                </div>
-                                <div
-                                    class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 ticket-part-container no-padding-right tickets-are-available"
-                                    style="">
-                                    <div class="col-xs-4 no-padding">
-                                        <a href="" class="bid-price-toggle bid-down green-button button ghosted-out"
-                                           data-handbid-ticket-button="down">-</a>
-                                    </div>
-
-                                    <div class="buy-quantity col-xs-4 no-padding"><span data-handbid-ticket-quantity="">0</span>
-                                        <input type="hidden" data-handbid-tickets-remaining="" value="5">
-                                    </div>
-
-                                    <div class="col-xs-4 ticket-quantity-up no-padding">
-                                        <a href="" class="bid-price-toggle bid-up green-button button "
-                                           data-handbid-ticket-button="up">+</a>
-                                    </div>
-
-                                    <div class="col-xs-12 ticket-remaining-inventory-cont no-padding">
-                            <span class="remaining-inventory" data-handbid-ticket-quant-remaining="">5 available</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                                        </div>
-                <div class="row tickets-footer-row">
-                    <div class="col-sm-3 col-sm-offset-6">
-                        <h3 class="total"><span class="handbidAuctionCurrency" title="USD">$</span><span
-                                data-handbid-tickets-total="">0</span></h3>
-                        <h5>Grand Total</h5>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a href="#" class="button green-solid-button   loading-span-button"
-                           data-handbid-tickets-button="purchase" data-handbid-credit-cards-need=""
-                           data-handbid-buy-tickets-nonce="68efd1d332" data-handbid-auction-id="7"
-                           data-handbid-profile-id="29551"><span>Add</span></a>
-                    </div>
-                </div>
-                    </div>
-</div>
-
+@include('main.auction._parts.tickets_popup')
 
                 <span class="status">
-                Status<span class="status-box"></span><span class="status-label">open</span>
+                Status<span class="status-box"></span><span class="status-label">{{vm.auction.status}}</span>
             </span>
             </span>
 
@@ -282,26 +55,45 @@
 
                             <form class="fancy-search" method="get">
                                 <button type="button">Search Items</button>
-                                <input class="query" type="search" name="q" placeholder="Search items">
-                                <a class="reset" href="#" style="display: none">X</a>
+                                <input class="query" ng-model="vm.items_search" placeholder="Search items">
+                                <a class="reset" ng-click="vm.clearItemsSearch()"
+                                   ng-show="(vm.items_search != '')">X</a>
                             </form>
 
                         </div>
                         <div class="col-md-2 col-xs-2 sort-label">Sort By:</div>
                         <div class="col-md-4 col-xs-4 select-wrapper">
-                            <select name="sort">
-                                <option value="_sortNameAsc">Name: A-Z</option>
-                                <option value="_sortNameDesc">Name: Z-A</option>
-                                <option value="_sortPriceAsc">Price: Low to High</option>
-                                <option value="_sortPriceDesc">Price: High to Low</option>
-                                <option value="_sortBidsAsc">Total Bids: Least to Most</option>
-                                <option value="_sortBidsDesc">Total Bids: Most to Least</option>
+                            <select name="sort" ng-model="vm.items_sorting_type" ng-change="vm.changeItemsOrdering()">
+                                <option ng-repeat="option in vm.getFiltersOrdering()"
+                                        ng-selected="(vm.items_sorting_type == option.value)"
+                                        value="{{option.value}}">{{option.title}}</option>
                             </select>
 
                         </div>
                     </div>
 
                     <div class="clear"></div>
+
+                    <div class="mobile-filters">
+                        <select name="mobile-sort" ng-model="vm.items_sorting_type" ng-change="vm.changeItemsOrdering()">
+                            <option ng-repeat="option in vm.getFiltersOrdering()"
+                                    ng-selected="(vm.items_sorting_type == option.value)"
+                                    value="{{option.value}}">{{option.title}}</option>
+                        </select>
+
+                        <select name="mobile-type" ng-model="vm.items_type">
+                            <option ng-repeat="option in vm.getFiltersByType(true)"
+                                    ng-selected="(vm.items_type == option.value)"
+                                    value="{{option.value}}">{{option.title}}</option>
+                        </select>
+
+                        <select name="mobile-category" ng-model="vm.items_category">
+                            <option ng-repeat="option in vm.getFiltersByCategories(true)"
+                                    ng-selected="(vm.items_category == option.value)"
+                                    value="{{option.value}}">{{option.title}}</option>
+                        </select>
+
+                    </div>
 
                 </div>
 
@@ -316,11 +108,12 @@
                         <div class="section" data-section="type">
                             <h4>Items</h4>
                             <ul class="by-item-type">
-                                <li data-selector="*" class="selected"><a href="#">All Items</a></li>
-                                <li data-selector="[data-for-sale]"><a href="#">For Sale</a></li>
-                                <li data-selector="[data-live]"><a href="#">Live</a></li>
-                                <li data-selector="[data-no-bids]"><a href="#">No Bids</a></li>
-                                <li data-selector="[data-is-ticket]"><a href="#">Tickets</a></li>
+
+                                <li ng-repeat="option in vm.getFiltersByType(false)"
+                                    ng-class="{'selected' : (vm.items_type == option.value)}"
+                                        value="{{option.value}}">
+                                    <a ng-click="vm.changeItemsType(option.value)">{{option.title}}</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -328,15 +121,22 @@
                             <h4>Categories</h4>
                             <ul class="by-category">
 
-                                <li data-selector="*" class="selected"><a href="#">All (<span
-                                            class="countAuctionItemsForCatAll">{{ vm.items.length }}</span>)</a>
+                                <li ng-repeat="option in vm.getFiltersByCategories(false)"
+                                    ng-class="{'selected' : (vm.items_category == option.value)}"
+                                    value="{{option.value}}">
+                                    <a ng-click="vm.changeItemsCategory(option.value)">{{option.title}}</a>
                                 </li>
 
-
-                                <li ng-repeat="category in vm.categories"
-                                    class="" data-selector="[data-tags~='|coolstuff|']" data-legacy-category-id="{{ category.id }}">
-                                    <a href="#">{{ category.name }} (<span class="countAuctionItemsForCat{{ category.id }}">{{ category.items.length }}</span>)</a>
-                                </li>
+<!--                                <li ng-class="{'selected' : (vm.items_category == 'all')}">-->
+<!--                                    <a ng-click="vm.changeItemsCategory('all')">All (<span>{{ vm.items.length }}</span>)</a>-->
+<!--                                </li>-->
+<!---->
+<!---->
+<!--                                <li ng-repeat="category in vm.categories"-->
+<!--                                    ng-class="{'selected' : (vm.items_category == category.id)}"-->
+<!--                                    data-legacy-category-id="{{ category.id }}">-->
+<!--                                    <a ng-click="vm.changeItemsCategory(category.id)">{{ category.name }} ({{ category.items.length }})</a>-->
+<!--                                </li>-->
 
                             </ul>
                         </div>
@@ -350,74 +150,14 @@
 
                     <div class="row simple-box-row item-list isotope" style="position: relative;">
 
-
-                        <div  ng-repeat="item in vm.items"
-                            class="simple-item-box simple-box status-{{ item.status }}"
-                            data-handbid-item-key="craft-beer-homebrewing-kit-56735" data-handbid-item-cat-id="5836"
-                            data-handbid-item-box="56735" data-handbid-params-box="56735" data-handbid-item-auction="7"
-                            data-handbid-item-box-status="open" data-tags="|coolstuff|"
-                            >
-
-                            <div class="header">
-                                <div class="col-md-4 col-xs-4 price"><span class="handbidAuctionCurrency"
-                                                                           title="USD">$</span><span
-                                        class="currentItemPrice" data-handbid-item-attribute="currentPrice">120</span>
-                                </div>
-                                <div class="col-md-8 col-xs-8 code">#<span
-                                        data-handbid-item-attribute="itemCode">#56735</span></div>
-                                <div class="clear"></div>
-                            </div>
-
-                            <div class="body">
-                                <div class="full-image-wrapper"
-                                     style="background-image: url('{{ item.imageUrl }}-/preview/600x400/-/quality/lightest/-/scale_crop/600x400/center/');"
-                                     data-backgroung-image-url="{{ item.imageUrl }}-/preview/600x400/-/quality/lightest/-/scale_crop/600x400/center/">
-                                    <div class="dim-overlay"></div>
-                                    <div class="box-flag">
-
-                                        <h3 data-handbid-box-banner="bidpad" data-handbid-box-id="{{ item.id }}">Live Only</h3>
-
-                                        <h3 data-handbid-box-banner="live" data-handbid-box-id="{{ item.id }}">Live Auction
-                                            Only</h3>
-
-                                        <h3 data-handbid-box-banner="losing" data-handbid-box-id="{{ item.id }}">Losing this
-                                            item.</h3>
-
-                                        <h3 data-handbid-box-banner="winning" data-handbid-box-id="{{ item.id }}">Winning this
-                                            item.</h3>
-
-                                        <h3 data-handbid-box-banner="sold" data-handbid-box-id="{{ item.id }}">Sold Out</h3>
-                                    </div>
-                                </div>
-
-                                <div class="contents">
-
-                                    <h3>
-                                        <a href="#/auctions/{{ vm.auction.key }}/item/{{ item.key }}/"
-                                           data-handbid-item-attribute="name">{{ item.name }}</a>
-                                        <span style="display: none;"
-                                              class="nameLowerCase">craft beer homebrewing kit</span>
-                                    </h3>
-
-                                    <h4 data-handbid-item-attribute="categoryName">{{ item.categoryName }}</h4>
-
-                                    <ul class="horizontal-details">
-
-                                        <li class="bids col-md-6 col-xs-6">Bids <em data-handbid-bids-of-id="56735"
-                                                                                    data-handbid-item-attribute="bidCount">{{ item.bidCount }}</em>
-                                        </li>
-                                        <li class="bid-now col-md-6 col-xs-6">Bid Now</li>
-
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
+                        <div ng-show="vm.displayed_items.length"
+                             ng-repeat="current_item in vm.displayed_items | orderBy : vm.order_by : vm.order_reverse">
+                            <div handbid-item-box="current_item" auction="vm.auction"></div>
                         </div>
 
 
-                        <h3 class="message-no-isotope-results" style="display: none;">Sorry! We couldn't find any
+                        <h3 class="message-no-isotope-results" ng-hide="vm.displayed_items.length">Sorry! We couldn't
+                            find any
                             matching items. Search
                             again!</h3>
 
@@ -430,7 +170,7 @@
         </div>
 
         <div class="container container-fluid big-content" data-slider-nav-key="description">
-            {{ auction.description }}
+            {{ vm.auction.description }}
         </div>
 
 

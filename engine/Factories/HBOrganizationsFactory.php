@@ -13,19 +13,23 @@ class HBOrganizationsFactory extends HBFactory
             $args['page'] = intval($params['page']);
         }
 
-        return self::get('publicorganization', $args);
+        $organizations = self::get('publicorganization', $args);
+
+        return self::response($organizations);
     }
 
     public static function getCount()
     {
         $count = self::get('publicorganization/count', []);
 
-        return $count;
+        return self::response($count);
     }
 
     public static function getBySlug($slug)
     {
-        return self::get('publicorganization/slug/'.$slug, []);
+        $organization = self::get('publicorganization/slug/'.$slug, []);
+
+        return self::response($organization);
     }
 
 }

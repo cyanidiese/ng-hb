@@ -1,0 +1,61 @@
+<div class="simple-item-box simple-box status-{{ item.status }}"
+     ng-class="{'win-item-status-winning' : false, 'win-item-status-losing' : false,
+     'location-item-status-live' : item.disableMobileBidding, 'location-item-status-bidpad' : item.isBidpadOnly,
+     'for-sale-status' : item.isDirectPurchaseItem }"
+>
+    <div class="header">
+        <div class="col-md-4 col-xs-4 price">
+            <span title="{{ auction.currencyCode || 'USD' }}">{{ auction.currencySymbol || '$' }}</span>
+            <span class="currentItemPrice" data-handbid-item-attribute="currentPrice">{{ item.currentPrice }}</span>
+        </div>
+        <div class="col-md-8 col-xs-8 code">#<span >{{ item.itemCode }}</span></div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="body">
+        <div class="full-image-wrapper"
+             style="background-image: url('{{ item.imageUrl }}-/preview/600x400/-/quality/lightest/-/scale_crop/600x400/center/');"
+             data-backgroung-image-url="{{ item.imageUrl }}-/preview/600x400/-/quality/lightest/-/scale_crop/600x400/center/">
+            <div class="dim-overlay"></div>
+            <div class="box-flag">
+
+                <h3 data-handbid-box-banner="bidpad" data-handbid-box-id="{{ item.id }}">Live Only</h3>
+
+                <h3 data-handbid-box-banner="live" data-handbid-box-id="{{ item.id }}">Live Auction
+                    Only</h3>
+
+                <h3 data-handbid-box-banner="losing" data-handbid-box-id="{{ item.id }}">Losing this
+                    item.</h3>
+
+                <h3 data-handbid-box-banner="winning" data-handbid-box-id="{{ item.id }}">Winning this
+                    item.</h3>
+
+                <h3 data-handbid-box-banner="sold" data-handbid-box-id="{{ item.id }}">Sold Out</h3>
+            </div>
+        </div>
+
+        <div class="contents">
+
+            <h3>
+                <a href="#/auctions/{{ auction.key }}/item/{{ item.key }}/"
+                   data-handbid-item-attribute="name">{{ item.name }}</a>
+            </h3>
+
+            <h4 ng-show="(trim(item.categoryName) != '')">{{ item.categoryName }}</h4>
+
+            <ul class="horizontal-details">
+
+                <li class="bids col-md-6 col-xs-6">
+                    {{ getLeftText(item) }} <em>{{ getLeftValue(item) }}</em>
+                </li>
+                <li class="{{ getRightClass(item) }} col-md-6 col-xs-6">
+                    <em>{{ getRightValue(item) }}</em> {{ getRightText(item) }}
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

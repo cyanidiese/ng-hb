@@ -10,8 +10,11 @@
 
         <form class="fancy-search" method="get">
             <button type="submit">Search Auctions</button>
-            <input class="query categories-query" type="search" name="search" placeholder="Search Auctions" value="">
-            <a class="reset" href="#" style="display: none">X</a>
+            <input class="query categories-query" type="search"
+                   ng-model="vm.search_string"
+                   ng-disabled="vm.loading"
+                   placeholder="Search Auctions">
+            <a class="reset" href="#" ng-show="vm.search_string" ng-click="vm.clearSearchString()">X</a>
         </form>
 
     </div>

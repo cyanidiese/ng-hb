@@ -15,6 +15,52 @@
 
         <div class="col-md-7">
             <div class="images">
+
+                    <ul ng-if="(item.images.length > 1)" class="slider-nav" data-slider-nav-id="item-image-slider">
+                        <a class="slider-arrow prev" href="#" data-slider-nav-direction="prev">Previous</a>
+                        <a class="slider-arrow next" href="#" data-slider-nav-direction="next">Next</a>
+                    </ul>
+
+                    <div  ng-if="(item.images.length > 1)" class="slider-content" data-slider-nav-id="item-image-slider" data-slider-progress>
+                        <div ng-repeat="(k, v) in item.images"  class="image" data-slider-nav-key="item-image-{{ k }}">
+                                <div style="background-image: url('https://www.ucarecdn.com/{{ v.itemImageUrl }}/-/preview/650x500/-/setfill/e7e7e7/-/crop/650x500/center/-/quality/lightest/');
+                                background-size: contain;" class="image-holder"></div>
+                            </div>
+                    </div>
+
+                    <div ng-if="(item.images.length <= 1)" style="background-image: url('https://www.ucarecdn.com/{{ item.images[0].itemImageUrl }}/-/preview/650x500/-/setfill/e7e7e7/-/crop/650x500/center/-/quality/lightest/'); 
+                    background-size: contain;" class="image-holder"></div>
+
+
+                <div style="<?php if (!$isBidpadOnly)
+                { ?>display:none;<?php } ?>" data-handbid-item-banner="bidpad"
+                     class="item-banner live-item" data-handbid-box-id="{{ item.id }}">This item is only
+                    available in the live auction.
+                </div>
+                <div ng-show="" style="<?php if (!$isLiveItem)
+                { ?>display:none;<?php } ?>" data-handbid-item-banner="live"
+                     class="item-banner live-item" data-handbid-box-id="{{ item.id }}">This item is only
+                    available in the live auction.
+                </div>
+                <div style="<?php if (!$isLosing)
+                { ?>display:none;<?php } ?>" data-handbid-item-banner="losing"
+                     class="item-banner losing" data-handbid-box-id="{{ item.id }}">You are losing this
+                    item.
+                </div>
+                <div style="<?php if (!$isWinning)
+                { ?>display:none;<?php } ?>"
+                     data-handbid-item-banner="winning" class="item-banner winning"
+                     data-handbid-box-id="{{ item.id }}">You are winning this item.
+                </div>
+                <div
+                    style="<?php if (!($item->status == "sold" || $item->status == "paid" || (($itemIsTicket) && ($item->inventoryRemaining == 0))))
+                    { ?>display:none;<?php } ?>"
+                    data-handbid-item-banner="sold" class="item-banner winning"
+                    data-handbid-box-id="{{ item.id }}">This item has already been SOLD!
+                </div>
+
+
+
                 <ul class="slider-nav" data-slider-nav-id="item-image-slider">
                     <a class="slider-arrow prev" href="#" data-slider-nav-direction="prev">Previous</a>
                     <a class="slider-arrow next" href="#" data-slider-nav-direction="next">Next</a>
@@ -43,8 +89,8 @@
             </div>
 
             <ul class="slider-nav auto-open" data-slider-nav-id="item-image-slider">
-                <a class="circle"  ng-repeat="image in vm.item.images"
-                   data-slider-nav-key="item-image-{{ image.itemImageGuid }}" data-slider-nav-item="">Circle</a>
+                    <a class="circle" ng-repeat="(k, v) in item.images" data-slider-nav-key="item-image-{{ k }}"
+                       data-slider-nav-item>Circle</a>
             </ul>
         </div>
 

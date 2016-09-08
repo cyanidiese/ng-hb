@@ -37,7 +37,11 @@
 
         vm.current_status = 'current';
 
+        vm.search_string = '';
+        vm.search_time_changed = getCurrentSeconds();
+
         vm.selectAuctionsByStatus = selectAuctionsByStatus;
+        vm.clearSearchString = clearSearchString;
 
         getAuctions();
         getAuctionsCount();
@@ -56,6 +60,10 @@
                 limit : vm.auctions_per_page
             };
 
+            if(vm.search_string.trim() != ''){
+                data.search = vm.search_string;
+            }
+
             auctions.getAuctions(data).then(function(data)
             {
                 vm.loading = false;
@@ -68,11 +76,13 @@
 
         function getAuctionsCount()
         {
-            vm.loading = true;
-
             var data = {
                 statuses : vm.statuses[vm.current_status].join(',')
             };
+
+            if(vm.search_string.trim() != ''){
+                data.search = vm.search_string;
+            }
 
             auctions.getAuctionsCount(data).then(function(data)
             {
@@ -101,8 +111,42 @@
             }
         }
 
+        function clearSearchString()
+        {
+            vm.search_string = ''
+        }
+
+        function timeoutSearchCheck(search_time_changed)
+        {
+            if(search_time_changed == vm.search_time_changed)
+            {
+                vm.auctions_page = 1;
+                vm.auctions_total = 0;
+                getAuctions();
+                getAuctionsCount();
+            }
+        }
+
+        function getCurrentSeconds()
+        {
+            return new Date().getTime();
+        }
+
         $scope.$watch('vm.auctions_page', function(current, original) {
+
             getAuctions(true);
+
+        });
+
+        $scope.$watch('vm.search_string', function(current, original) {
+
+            if(original != current) {
+                var search_time_changed = getCurrentSeconds();
+                vm.search_time_changed = search_time_changed;
+                setTimeout(function () {
+                    timeoutSearchCheck(search_time_changed);
+                }, 2000);
+            }
         });
     }
 
