@@ -1,0 +1,18 @@
+<ul class="simple-list">
+    <li ng-if="tools.getInventoryWinningCount()" ng-repeat="win in inventory.winning">
+        <div class="col-md-8 col-xs-8">
+            <a href="#/auctions/{{ auction.key }}/item/{{ win.item.key }}">
+                <h4>
+                {{ win.item.name }}
+                </h4>
+            </a>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <span class="bid-amount winning">
+                <span title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                {{ win.amount }}
+            </span>
+        </div>
+    </li>
+    <p ng-if="(tools.getInventoryWinningCount() == 0)" >You are currently not winning any items.</p>
+</ul>

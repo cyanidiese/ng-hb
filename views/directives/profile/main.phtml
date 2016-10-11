@@ -1,0 +1,151 @@
+<div id="bidder-info-load" class="bidder-info-load">
+    <div class="bidder-info-container" data-dashboard-profile-id="29551">
+        <div class="container container-fluid underlined">
+            <div class="row meta">
+                <div class="pin col-md-6 col-xs-6">
+                    <label>Pin Code:</label>
+                    {{ profile.pin }}
+                </div>
+                <div class="auction col-md-4 col-xs-4"  ng-if="(inventory)">
+                    {{ tools.auctionName }}
+                </div>
+                <div class="paddle-number col-md-2 col-xs-2"  ng-if="(inventory)">
+                    Paddle # : {{ inventory.currentPaddleNumber }}</div>
+            </div>
+            <div class="slider-nav " data-slider-nav-id="bidder-dashboard" data-toggle-mode="true">
+
+                <div class="slider-nav-mobile row">
+
+                    <div class="col-xs-9">
+
+                        <div class="pin col-md-12 col-xs-12">
+                            <label>Pin Code:</label>
+                            {{ profile.pin }}
+                        </div>
+
+                        <a class="col-xs-12 profile-user-info profile-opener"
+                           data-slider-nav-key="profile-user-info">
+                            <span>{{ profile.firstName.charAt(0) }}. {{ profile.lastName }}</span>
+                        </a>
+
+                    </div>
+                    <a class="col-xs-3 total-spent">
+                            <span>
+                                <span title="{{tools.currencyCode}}">{{ tools.currencySymbol }}</span>
+                                <span data-handbid-stats-grand-total="">{{ tools.inventoryTotal }}</span></span>
+                        <label>Total</label>
+                    </a>
+                </div>
+
+                <div class="slider-nav-desktop row stats-bar">
+                    <a class="col-md-2 col-xs-8 profile-user-info profile-opener"
+                       data-slider-nav-key="profile-user-info">
+                        <span>{{ profile.firstName.charAt(0) }}. {{ profile.lastName }}</span>
+                    </a>
+                    <a class="col-md-2 col-sm-3 col-xs-3 profile-max-bids "
+                       ng-if="(inventory)"
+                       data-slider-nav-key="profile-max-bids">
+                        <label>Max Bids</label>
+                        <span data-handbid-stats-num-proxies="">{{ tools.inventoryMaxBidsCount }}</span>
+                    </a>
+                    <a class="col-md-2 col-sm-3 col-xs-3 profile-winning "
+                       ng-if="(inventory)"
+                       data-slider-nav-key="profile-winning">
+                        <label>Winning</label>
+                        <span data-handbid-stats-num-winning="">{{ tools.inventoryWinningCount }}</span>
+                    </a>
+                    <a class="col-md-2 col-sm-3 col-xs-3 profile-losing "
+                       ng-if="(inventory)"
+                       data-slider-nav-key="profile-losing">
+                        <label>Losing</label>
+                        <span data-handbid-stats-num-losing="">{{ tools.inventoryLosingCount }}</span>
+                    </a>
+                    <a class="col-md-2 col-sm-3 col-xs-3 profile-purchases "
+                       ng-if="(inventory)"
+                       data-slider-nav-key="profile-purchases">
+                        <label>Purchases</label>
+                        <span data-handbid-stats-num-purchases="">{{ tools.inventoryPurchasesCount }}</span>
+                    </a>
+                    <a class="col-md-2 col-xs-12 total-spent"
+                       ng-if="(inventory)">
+                        <label>Total</label>
+                        <span><span title="{{tools.currencyCode}}">{{ tools.currencySymbol }}</span>
+                                {{ tools.inventoryTotal }}</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="full-width-container bidder-info-body">
+            <div class="container container-fluid">
+                <div class="slider-content" data-slider-nav-id="bidder-dashboard">
+
+                    <div class="row" data-slider-nav-key="profile-user-info">
+                        <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+
+                        <div class="col-md-3 col-xs-12">
+                            <ul class="quick-links slider-nav auto-open"
+                                data-slider-nav-id="bidder-dashboard-inner">
+                                <li><a data-slider-nav-key="user-profile">User Profile</a></li>
+                                <li><a data-slider-nav-key="update-credit-card">Update Credit Card</a></li>
+                                <li><a data-slider-nav-key="bidder-notifications">Messages</a></li>
+                                <li><a data-slider-nav-key="see-my-receipt">View Receipts/Invoices <span
+                                            class="badge unpaidInvoicesCountContainer" style="">2</span></a></li>
+                                <li><a href="/handbid-logout" class="handbid-logout-link">Logout</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-9 col-xs-12">
+                            <div class="slider-content" data-slider-nav-id="bidder-dashboard-inner">
+
+                                <div class="" data-slider-nav-key="user-profile" data-slider-href="">
+                                    @include('directives.profile.details.update-form')
+                                </div>
+
+                                <div class="" data-slider-nav-key="update-credit-card">
+                                    @include('directives.profile.details.credit-cards')
+                                </div>
+
+                                <div class="" data-slider-nav-key="bidder-notifications">
+                                    @include('directives.profile.details.messages')
+                                </div>
+
+                                <div class="" data-slider-nav-key="see-my-receipt">
+                                    @include('directives.profile.details.receipts')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" data-slider-nav-key="profile-max-bids" ng-if="(inventory)">
+                        <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                        <div class="col-md-12 simple-list-container">
+                            @include('directives.profile.auction.max-bids')
+                        </div>
+                    </div>
+
+                    <div class="row" data-slider-nav-key="profile-winning" ng-if="(inventory)">
+                        <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                        <div class="col-md-12 simple-list-container">
+                            @include('directives.profile.auction.winning')
+                        </div>
+                    </div>
+
+                    <div class="row" data-slider-nav-key="profile-losing" ng-if="(inventory)">
+                        <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                        <div class="col-md-12 simple-list-container">
+                            @include('directives.profile.auction.losing')
+                        </div>
+                    </div>
+
+                    <div class="row" data-slider-nav-key="profile-purchases" ng-if="(inventory)">
+                        <button class="close-bidder-slider" data-slider-close="bidder-dashboard">×</button>
+                        <div class="col-md-12 simple-list-container">
+                            @include('directives.profile.auction.purchases')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,39 +3,93 @@
 
     angular
         .module('handbidServices')
-        .service('intermediator', intermediator);
+        .service('intermediator',  intermediator);
 
-    function intermediator() {
+    intermediator.$inject = ['$rootScope'];
 
-        var _pageType = '';
-        var _pageObject = false;
+    function intermediator($rootScope) {
 
         return {
-            setPageType: setPageType,
-            getPageType: getPageType,
-            setPageObject: setPageObject,
-            getPageObject: getPageObject,
-            getAuctionTimeRanges: getAuctionTimeRanges
+            isItemInWinning : isItemInWinning,
+            isItemInLosing : isItemInLosing,
+            broadcastPageType : broadcastPageType,
+            broadcastAuction : broadcastAuction,
+            broadcastOrganization : broadcastOrganization,
+            broadcastItem : broadcastItem,
+            broadcastInventory : broadcastInventory,
+            broadcastProfile : broadcastProfile,
+            broadcastReloadingInventory : broadcastReloadingInventory
         };
 
-        function setPageType (pageType) {
-            _pageType = pageType;
+        function broadcastPageType(page_type) {
+
+            $rootScope.$broadcast('page-type-updated', page_type);
         }
 
-        function getPageType () {
-            return _pageType;
+        function broadcastAuction(auction) {
+
+            $rootScope.$broadcast('auction-updated', auction);
         }
 
-        function setPageObject (pageObject) {
-            _pageObject = pageObject;
+        function broadcastOrganization(organization) {
+
+            $rootScope.$broadcast('organization-updated', organization);
         }
 
-        function getPageObject () {
-            return _pageObject;
+        function broadcastItem(item) {
+
+            $rootScope.$broadcast('item-updated', item);
+
+            broadcastAuction(item.auction);
         }
 
-        function getAuctionTimeRanges (auction) {
-            return '';
+        function broadcastInventory(inventory) {
+
+            $rootScope.$broadcast('inventory-updated', inventory);
+        }
+
+        function broadcastProfile(profile) {
+
+            $rootScope.$broadcast('profile-updated', profile);
+        }
+
+        function broadcastReloadingInventory(auction_id) {
+
+            $rootScope.$broadcast('reload-inventory', auction_id);
+        }
+
+
+        //#################################################################
+
+
+        function isItemInWinning(item_id, inventory) {
+
+            var presented = false;
+
+            if (inventory != null && inventory.winning != undefined) {
+                angular.forEach(inventory.winning, function (bid) {
+                    if (bid.item.id == item_id) {
+                        presented = true;
+                    }
+                });
+            }
+
+            return presented;
+
+        }
+
+        function isItemInLosing(item_id, inventory) {
+
+            var presented = false;
+
+            if (inventory != null && inventory.losing != undefined) {
+                angular.forEach(inventory.losing, function (bid) {
+                    if (bid.item.id == item_id) {
+                        presented = true;
+                    }
+                });
+            }
+            return presented;
         }
     }
 

@@ -1,0 +1,58 @@
+<div>
+<div class="row sort-bar auction-item-list" style="transition: none; margin-bottom: 15px;">
+
+    <div class="category-cover-cheating"></div>
+
+    <div class="col-md-6 col-xs-6 fancy-search-wrapper">
+
+        <form class="fancy-search" method="get">
+            <button type="submit">Search Auctions</button>
+            <input class="query categories-query" type="search"
+                   ng-model="search_string"
+                   ng-disabled="loading"
+                   placeholder="Search Auctions">
+            <a class="reset" href="#" ng-show="search_string" ng-click="clearSearchString()">X</a>
+        </form>
+
+    </div>
+</div>
+
+<div class="sort-bar auction-list">
+
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-6 legend">
+        <a ng-repeat="(key, value) in statuses"
+           class="{{ key }}" ng-class="{'selected' : (key == current_status)}"
+           ng-click="selectAuctionsByStatus(key)">
+            <span class="box"></span>{{ key }}
+        </a>
+    </div>
+
+    <div class="col-md-3 select-wrapper">
+
+    </div>
+</div>
+
+<h3 class="no-results" ng-show="(auctions.length == 0 || loading)">{{ (loading) ? 'Loading...' : 'No Auctions Found' }}</h3>
+
+<div class="row simple-box-row auctions"  ng-show="!(auctions.length == 0 || loading)" ng-repeat="chunk in auctions_chunks">
+
+
+    <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="auction in chunk">
+
+        <div handbid-auction-box="auction"></div>
+
+    </div>
+
+
+</div>
+
+<handbid-pagination
+    current="auctions_page"
+    maximum="auctions_per_page"
+    total="auctions_total"
+></handbid-pagination>
+</div>

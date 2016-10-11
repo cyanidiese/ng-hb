@@ -15,8 +15,7 @@
 
         vm.intermediator = intermediator;
 
-        vm.intermediator.setPageType('organizations');
-        vm.intermediator.setPageObject(false);
+        vm.intermediator.broadcastPageType('organizations');
 
         vm.organizations = [];
         vm.organizations_chunks = [];

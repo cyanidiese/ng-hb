@@ -64,7 +64,7 @@
                         <div class="col-md-2 col-xs-2 sort-label">Sort By:</div>
                         <div class="col-md-4 col-xs-4 select-wrapper">
                             <select name="sort" ng-model="vm.items_sorting_type" ng-change="vm.changeItemsOrdering()">
-                                <option ng-repeat="option in vm.getFiltersOrdering()"
+                                <option ng-repeat="option in vm.vm.items_sorting_vars"
                                         ng-selected="(vm.items_sorting_type == option.value)"
                                         value="{{option.value}}">{{option.title}}</option>
                             </select>
@@ -76,19 +76,19 @@
 
                     <div class="mobile-filters">
                         <select name="mobile-sort" ng-model="vm.items_sorting_type" ng-change="vm.changeItemsOrdering()">
-                            <option ng-repeat="option in vm.getFiltersOrdering()"
+                            <option ng-repeat="option in vm.vm.items_sorting_vars"
                                     ng-selected="(vm.items_sorting_type == option.value)"
                                     value="{{option.value}}">{{option.title}}</option>
                         </select>
 
                         <select name="mobile-type" ng-model="vm.items_type">
-                            <option ng-repeat="option in vm.getFiltersByType(true)"
+                            <option ng-repeat="option in vm.filters_by_type_mobile"
                                     ng-selected="(vm.items_type == option.value)"
                                     value="{{option.value}}">{{option.title}}</option>
                         </select>
 
                         <select name="mobile-category" ng-model="vm.items_category">
-                            <option ng-repeat="option in vm.getFiltersByCategories(true)"
+                            <option ng-repeat="option in vm.filters_by_categories_mobile"
                                     ng-selected="(vm.items_category == option.value)"
                                     value="{{option.value}}">{{option.title}}</option>
                         </select>
@@ -109,7 +109,7 @@
                             <h4>Items</h4>
                             <ul class="by-item-type">
 
-                                <li ng-repeat="option in vm.getFiltersByType(false)"
+                                <li ng-repeat="option in vm.filters_by_type"
                                     ng-class="{'selected' : (vm.items_type == option.value)}"
                                         value="{{option.value}}">
                                     <a ng-click="vm.changeItemsType(option.value)">{{option.title}}</a>
@@ -121,22 +121,11 @@
                             <h4>Categories</h4>
                             <ul class="by-category">
 
-                                <li ng-repeat="option in vm.getFiltersByCategories(false)"
+                                <li ng-repeat="option in vm.filters_by_categories"
                                     ng-class="{'selected' : (vm.items_category == option.value)}"
                                     value="{{option.value}}">
                                     <a ng-click="vm.changeItemsCategory(option.value)">{{option.title}}</a>
                                 </li>
-
-<!--                                <li ng-class="{'selected' : (vm.items_category == 'all')}">-->
-<!--                                    <a ng-click="vm.changeItemsCategory('all')">All (<span>{{ vm.items.length }}</span>)</a>-->
-<!--                                </li>-->
-<!---->
-<!---->
-<!--                                <li ng-repeat="category in vm.categories"-->
-<!--                                    ng-class="{'selected' : (vm.items_category == category.id)}"-->
-<!--                                    data-legacy-category-id="{{ category.id }}">-->
-<!--                                    <a ng-click="vm.changeItemsCategory(category.id)">{{ category.name }} ({{ category.items.length }})</a>-->
-<!--                                </li>-->
 
                             </ul>
                         </div>
@@ -152,7 +141,7 @@
 
                         <div ng-show="vm.displayed_items.length"
                              ng-repeat="current_item in vm.displayed_items | orderBy : vm.order_by : vm.order_reverse">
-                            <div handbid-item-box="current_item" auction="vm.auction"></div>
+                            <div handbid-item-box="current_item" auction="vm.auction" inventory="vm.inventory" tools="vm.tools"></div>
                         </div>
 
 

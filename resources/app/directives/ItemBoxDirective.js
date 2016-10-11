@@ -11,7 +11,9 @@
             restrict: 'A',
             scope: {
                 item: '=handbidItemBox',
-                auction: '=auction'
+                auction: '=auction',
+                inventory: '=inventory',
+                tools: '=tools'
             },
             templateUrl: hb_routes.views.directives.item_box,
             replace: true,
@@ -39,6 +41,35 @@
                         ? ((!item.hasInventory || (item.inventoryRemaining == -1)) ? '∞' : item.inventoryRemaining)
                         : '');
                 };
+
+                $scope.isItemInWinning = function(item){
+
+                    return $scope.tools.isItemInWinning(item.id);
+                };
+
+                $scope.isItemInLosing = function(item){
+
+                    return $scope.tools.isItemInLosing(item.id);
+                };
+
+                $scope.$watch('item', function (current, original)
+                {
+                    $scope.leftText = $scope.getLeftText(current);
+                    $scope.leftValue = $scope.getLeftValue(current);
+                    $scope.rightClass = $scope.getRightClass(current);
+                    $scope.rightText = $scope.getRightText(current);
+                    $scope.rightValue = $scope.getRightValue(current);
+                    $scope.rightValue = $scope.getRightValue(current);
+                    $scope.itemInWinning = $scope.isItemInWinning(current);
+                    $scope.itemInLosing = $scope.isItemInLosing(current);
+                });
+
+                $scope.$watch('inventory', function (current, original)
+                {
+                    $scope.itemInWinning = $scope.isItemInWinning(current);
+                    $scope.itemInLosing = $scope.isItemInLosing(current);
+                });
+
 
             }
         };

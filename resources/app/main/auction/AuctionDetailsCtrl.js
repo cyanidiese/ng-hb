@@ -15,7 +15,7 @@
 
         vm.intermediator = intermediator;
 
-        vm.intermediator.setPageType('auction');
+        vm.intermediator.broadcastPageType('auction');
 
         vm.auctionSlug = $routeParams.auctionSlug;
 
@@ -23,9 +23,14 @@
         vm.items_category = 'all';
         vm.items_search = '';
 
+        vm.items_sorting_vars = setFiltersOrdering();
         vm.items_sorting_type = '_sortNameAsc';
         vm.order_by = 'name';
         vm.order_reverse = false;
+        vm.filters_by_type = getFiltersByType();
+        vm.filters_by_type_mobile = getFiltersByType(true);
+        vm.filters_by_categories = getFiltersByCategories();
+        vm.filters_by_categories_mobile = getFiltersByCategories(true);
 
         vm.auction = false;
         vm.categories = [];
@@ -38,9 +43,10 @@
         vm.changeItemsCategory = changeItemsCategory;
         vm.changeItemsOrdering = changeItemsOrdering;
 
-        vm.getFiltersOrdering = getFiltersOrdering;
-        vm.getFiltersByCategories = getFiltersByCategories;
-        vm.getFiltersByType = getFiltersByType;
+        vm.tools = {
+            isItemInWinning : isItemInWinning,
+            isItemInLosing : isItemInLosing
+        };
 
         getAuction();
 
@@ -55,7 +61,7 @@
 
                 vm.auction = data;
 
-                vm.intermediator.setPageObject(data);
+                vm.intermediator.broadcastAuction(data);
 
                 prepareCategoriesAndItems()
 
@@ -183,7 +189,7 @@
             }
         }
 
-        function getFiltersOrdering() {
+        function setFiltersOrdering() {
             return [
                 {
                     value : '_sortNameAsc',
@@ -247,10 +253,13 @@
         }
 
         function getFiltersByCategories(mobile) {
+
+            var all_items_count = (vm.items) ? vm.items.length : 0;
+
             var filters = [
                 {
                     value : 'all',
-                    title : ((mobile) ? 'Category: ' : '') + 'All Items (' + vm.items.length + ')'
+                    title : ((mobile) ? 'Category: ' : '') + 'All Items (' + all_items_count + ')'
                 }
             ];
 
@@ -265,8 +274,39 @@
             return filters;
         }
 
+
+
+        function isItemInWinning(item_id) {
+
+            return vm.intermediator.isItemInWinning(item_id, vm.inventory);
+
+        }
+
+        function isItemInLosing(item_id) {
+
+            return vm.intermediator.isItemInLosing(item_id, vm.inventory);
+        }
+
+
         $scope.$watch('vm.items_type + vm.items_category + vm.items_search', function (current, original) {
             filterItems();
+        });
+
+        $scope.$watch('vm.items', function (current, original) {
+            vm.filters_by_type = getFiltersByType();
+            vm.filters_by_type_mobile = getFiltersByType(true);
+        });
+
+        $scope.$watch('vm.categories', function (current, original) {
+            vm.filters_by_categories = getFiltersByCategories();
+            vm.filters_by_categories_mobile = getFiltersByCategories(true);
+        });
+
+
+        $scope.$on('inventory-updated', function(event, args) {
+
+            vm.inventory = args;
+
         });
     }
 

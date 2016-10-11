@@ -38,20 +38,23 @@ gulp.task('old_js', function() {
 
 gulp.task('js', function() {
     gulp.src([
+        'resources/app/factories/factories.js',
+        'resources/app/factories/AuctionsFactory.js',
+        'resources/app/factories/ItemsFactory.js',
+        'resources/app/factories/OrganizationsFactory.js',
+        'resources/app/factories/ProfileFactory.js',
+
+        'resources/app/services/services.js',
+        'resources/app/services/IntermediatorService.js',
+
         'resources/app/directives/directives.js',
         'resources/app/directives/TitleDirective.js',
         'resources/app/directives/BreadcrumbsDirective.js',
         'resources/app/directives/PaginationDirective.js',
         'resources/app/directives/AuctionBoxDirective.js',
+        'resources/app/directives/AuctionListDirective.js',
         'resources/app/directives/ItemBoxDirective.js',
-
-        'resources/app/factories/factories.js',
-        'resources/app/factories/AuctionsFactory.js',
-        'resources/app/factories/ItemsFactory.js',
-        'resources/app/factories/OrganizationsFactory.js',
-
-        'resources/app/services/services.js',
-        'resources/app/services/IntermediatorService.js',
+        'resources/app/directives/ProfileDirective.js',
 
         'resources/app/main/app.js',
 
@@ -62,6 +65,7 @@ gulp.task('js', function() {
         'resources/app/main/organization/OrganizationListCtrl.js',
         'resources/app/main/header/TitleCtrl.js',
         'resources/app/main/header/BreadcrumbsCtrl.js',
+        'resources/app/main/header/ProfileCtrl.js',
 
         'resources/app/main/routes.js'
     ])

@@ -1,0 +1,102 @@
+<div data-handbid-bid data-item-nobidding-id="{{ vm.item.id }}"
+     ng-if="(vm.isNotShownInPresale(vm.item) || vm.isAuctionClosed(vm.item))">
+    <div class="row">
+        <h4 class="no-bidding-message">
+            {{ (vm.isBiddable(vm.item)) ? "Item is not open for bidding" : "Item is not available to purchase" }}
+        </h4>
+    </div>
+</div>
+<div data-handbid-bid data-item-is-sold-id="{{ vm.item.id }}"
+     ng-if="(vm.isAlreadySold(vm.item))" >
+    <div class="row">
+        <h4 class="no-bidding-message">
+            This item has already been SOLD!
+        </h4>
+    </div>
+</div>
+<div data-handbid-bid data-item-is-live-id="{{ vm.item.id }}"
+     ng-if="(vm.isLiveItem(vm.item))" >
+    <div class="row">
+        <h4 class="no-bidding-message only-live-auctions">
+            <b>Live Auction Item</b><br>
+            This item is only available in the live auction at the event. 
+            Contact the auction manager on when and where this will happen
+        </h4>
+    </div>
+</div>
+<div data-handbid-bid data-item-is-bidpad-id="{{ vm.item.id }}"
+     ng-if="(vm.isBidpadOnly(vm.item))" >
+    <div class="row">
+        <h4 class="no-bidding-message only-live-auctions">
+            <b>Live Only</b><br>
+            This item is only available using BidPad. 
+            Contact the auction manager about this opportunity
+        </h4>
+    </div>
+</div>
+<div data-handbid-bid
+     ng-if="(!vm.isNotShownInPresale(vm.item) && !vm.isAuctionClosed(vm.item) && !vm.isAlreadySold(vm.item) && !vm.isBidpadOnly(vm.item))" >
+
+    <div class="row bid-controls">
+
+        <div class="col-md-3 col-xs-3 bid-down">
+            <a class="green-button button"
+               data-handbid-bid-button="down" ng-click="vm.biddingDecrease()">-</a>
+        </div>
+
+        <div ng-if="(vm.isBiddable(vm.item))" class="bid-amount col-md-6 col-xs-6">
+            <span title="{{ vm.item.auction.currencyCode }}">{{ vm.item.auction.currencySymbol }}</span>
+            <span data-handbid-bid-amount data-handbid-onlybid-amount>
+                {{ vm.currentBiddingAmount }}
+            </span>
+        </div>
+
+        <div ng-if="(!vm.isBiddable(vm.item))" class="buy-quantity col-md-6 col-xs-6">
+            <span data-handbid-quantity>{{ vm.currentBuyingCount }}</span>
+        </div>
+
+        <div class="col-md-3 col-xs-3 bid-up">
+            <a class="green-button button" data-handbid-bid-button="up" ng-click="vm.biddingIncrease()">+</a>
+        </div>
+
+    </div>
+
+    <div class="row" ng-if="(vm.isBiddable(vm.item) && !vm.isAlreadySold(vm.item))" >
+
+        <div class="col-xs-6">
+            <a class="proxy-bid gray-solid-button handbid-modal-link loading-span-button"
+               ng-class="{'active': vm.isSettingMaxBid}"
+               data-handbid-modal-key="proxy">
+                <span>Set Max Bid</span>
+            </a>
+        </div>
+
+        <div class="col-xs-6">
+            <a class="bid-now green-solid-button loading-span-button"
+               ng-class="{'active': vm.isSettingBid}"
+               data-handbid-bid-button="bid" ng-click="vm.biddingSetBid()">
+                <span>Bid Now</span>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row" ng-if="(vm.isBuyItNowItem(vm.item))">
+        <div class="col-md-12">
+            <a class="buy-now pink-solid-button loading-span-button"
+               ng-class="{'active': vm.isBuyingNow}"
+               data-handbid-bid-button  ng-click="vm.biddingBuyNow()">
+                <span>Buy Now For $<em>{{ vm.item.buyNowPrice }}</em></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row" ng-if="(!vm.isBiddable(vm.item))" >
+        <div class="col-md-12 col-xs-12">
+            <a class="buy-now green-solid-button loading-span-button"
+               ng-class="{'active': vm.isPurchasing}"
+               data-handbid-bid-button="purchase"  ng-click="vm.biddingPurchase()">
+                <span>{{ (vm.isAppeal) ? "Donate Now" : "Add to Cart" }}</span></a>
+        </div>
+    </div>
+</div>

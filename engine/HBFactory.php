@@ -45,6 +45,7 @@ class HBFactory
             'user-agent'  => 'WordPress/' . $wp_version . '; ' . home_url(),
             'blocking'    => true,
             'headers'     => array(
+                'Authorization' => 'Bearer 512a40ac34b2532d08daf681'
             ),
             'cookies'     => array(
             ),

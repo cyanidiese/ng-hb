@@ -26,7 +26,9 @@ class HBActions
                     'breadcrumbs' => 'directiveBreadcrumbs',
                     'pagination' => 'directivePagination',
                     'auction_box' => 'directiveAuctionBox',
+                    'auction_list' => 'directiveAuctionList',
                     'item_box' => 'directiveItemBox',
+                    'profile' => 'directiveProfile',
                 ],
             ],
             'factories' => [
@@ -42,6 +44,14 @@ class HBActions
                     'list' => 'organizationsFactoryGetList',
                     'count' => 'organizationsFactoryGetCount',
                     'details' => 'organizationsFactoryGetDetails',
+                ],
+                'profile' => [
+                    'bidder' => 'profileFactoryGetBidder',
+                    'inventory' => 'profileFactoryGetInventory',
+                    'bidding' => [
+                        'create_bid' => 'biddingFactoryCreateBid',
+                        'remove_bid' => 'biddingFactoryRemoveBid',
+                    ],
                 ],
             ]
         ];
@@ -180,9 +190,23 @@ class HBActions
         exit;
     }
 
+    public static function directiveAuctionList()
+    {
+        echo HBView::view('directives.auction_list');
+
+        exit;
+    }
+
     public static function directiveItemBox()
     {
         echo HBView::view('directives.item_box');
+
+        exit;
+    }
+
+    public static function directiveProfile()
+    {
+        echo HBView::view('directives.profile.main');
 
         exit;
     }
@@ -250,6 +274,40 @@ class HBActions
         $params = self::getPostData();
 
         echo HBOrganizationsFactory::getBySlug($params['slug']);
+
+        exit;
+    }
+
+    public static function profileFactoryGetBidder()
+    {
+        echo HBBidderFactory::bidder();
+
+        exit;
+    }
+
+    public static function profileFactoryGetInventory()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::inventory($params['auction_id']);
+
+        exit;
+    }
+
+    public static function biddingFactoryCreateBid()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::createBid($params);
+
+        exit;
+    }
+
+    public static function biddingFactoryRemoveBid()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::removeBid($params['bid_id']);
 
         exit;
     }

@@ -1,0 +1,22 @@
+<ul class="simple-list">
+    <li class="row" ng-if="tools.getInventoryPurchasesCount()" ng-repeat="purchase in inventory.purchases">
+        <div class="col-md-4 col-xs-4">
+            <a href="#/auctions/{{ auction.key }}/item/{{ purchase.item.key }}">
+                <h4>{{ purchase.item.name }}</h4>
+            </a>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <h4 class="quantity-total">{{ purchase.quantity }} x
+                <span title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                {{ purchase.pricePerItem }}
+            </h4>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <span class="bid-amount winning">
+                <span title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                <span>{{ purchase.quantity * purchase.pricePerItem }}</span>
+            </span>
+        </div>
+    </li>
+    <p ng-if="(tools.getInventoryPurchasesCount() == 0)" >You have not purchased any items.</p>
+</ul>

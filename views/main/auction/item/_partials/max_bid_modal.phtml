@@ -1,0 +1,65 @@
+<div class="handbid-modal modal fade proxy-bid-dialog" tabindex="-1" role="dialog"
+     data-handbid-modal-key="proxy" data-handbid-bid=""
+     data-handbid-item-key="a-picture-is-worth-a-1000-words-63392">
+    <div class="modal-dialog">
+        <div class="row">
+            <h3>Set a Max Bid<br>on this item</h3>
+            <a href="#" class="modal-close proxy-bid-dialog-close" data-dismiss="modal"
+               aria-label="Close">×</a>
+            <p>Handbid will bid for you up to this amount</p>
+        </div>
+        <div class="row bid-controls">
+            <div class="col-xs-12">
+                <ul class="horizontal-details row">
+
+                    <li class="bids col-md-4 col-xs-3">
+                        <em>0</em>
+                        Bids
+                    </li>
+                    <li class="increment col-md-4 col-xs-5">
+                        <em>
+                            <span title="{{ vm.item.auction.currencyCode }}">{{ vm.item.auction.currencySymbol }}</span>
+                            <span id="bidIncrement">{{ vm.item.bidIncrement }}</span>
+                        </em>
+                        Increment
+                    </li>
+                    <li class="min minimalBidAmount col-md-4 col-xs-4">
+                        <em><span title="{{ vm.item.auction.currencyCode }}">{{ vm.item.auction.currencySymbol }}</span>
+                            <span id="currentPrice">{{ vm.currentBiddingAmount }}</span>
+                        </em>
+                        Min Bid
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-3 bid-down">
+                <a class="green-button button max-bid-down" data-handbid-bid-button="down"
+                   ng-click="vm.maxBidDecrease()">-</a>
+            </div>
+
+            <div class="bid-amount minimalBidAmount col-xs-6">
+                <span title="{{ vm.item.auction.currencyCode }}">{{ vm.item.auction.currencySymbol }}</span>
+                <span data-handbid-bid-amount="" data-handbid-maxbid-amount="" >{{ vm.currentMaxBidAmount }}</span>
+            </div>
+
+            <div class="col-xs-3 bid-up">
+                <a class="green-button button max-bid-up" data-handbid-bid-button="up"
+                   ng-click="vm.maxBidIncrease()">+</a>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="submit-proxy-bid col-xs-12">
+                <a class="proxy-bid button green-solid-button loading-span-button"
+                   ng-class="{'active': vm.isSettingMaxBid}"
+                   data-handbid-bid-button="proxy"
+                   ng-click="vm.biddingSetMaxBid()"
+                >
+                    <span>Set Max Bid</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

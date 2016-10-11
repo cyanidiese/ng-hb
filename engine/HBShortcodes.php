@@ -46,7 +46,7 @@ class HBShortcodes extends StdClass
 
     public static function bidderProfile($atts)
     {
-        return HBView::view('header.profile.main');
+        return HBView::view('header.profile');
     }
 
     public static function auctionTimer($atts)

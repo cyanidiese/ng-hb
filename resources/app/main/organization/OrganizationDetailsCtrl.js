@@ -5,7 +5,7 @@
         .module('handbidApp')
         .controller('OrganizationDetailsCtrl', OrganizationDetailsCtrl);
 
-    OrganizationDetailsCtrl.$inject = ['$scope', '$routeParams', 'intermediator'];
+    OrganizationDetailsCtrl.$inject = ['$scope', '$routeParams', 'intermediator', 'organizations'];
 
     function OrganizationDetailsCtrl($scope, $routeParams, intermediator, organizations){
 
@@ -15,7 +15,7 @@
 
         vm.intermediator = intermediator;
 
-        vm.intermediator.setPageType('auction');
+        vm.intermediator.broadcastPageType('organization');
 
         vm.organizationSlug = $routeParams.organizationSlug;
 
@@ -37,7 +37,7 @@
 
                 vm.organization = data;
 
-                vm.intermediator.setPageObject(data);
+                vm.intermediator.broadcastOrganization(data);
 
             });
         }

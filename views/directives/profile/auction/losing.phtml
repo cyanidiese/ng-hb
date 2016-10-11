@@ -1,0 +1,18 @@
+<ul class="simple-list">
+    <li ng-if="tools.getInventoryLosingCount()" ng-repeat="lose in inventory.losing">
+        <div class="col-md-8 col-xs-8">
+            <a href="#/auctions/{{ auction.key }}/item/{{ lose.item.key }}">
+                <h4>
+                    {{ lose.item.name }}
+                </h4>
+            </a>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <span class="bid-amount losing">
+                <span title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                {{ lose.amount }}
+            </span>
+        </div>
+    </li>
+    <p ng-if="(tools.getInventoryLosingCount() == 0)">You are currently not losing any items.</p>
+</ul>

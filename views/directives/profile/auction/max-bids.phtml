@@ -1,0 +1,23 @@
+<ul class="simple-list">
+    <li class="row" ng-if="tools.getInventoryMaxBidsCount()" ng-repeat="max_bid in inventory.max_bids">
+        <div class="col-md-8 col-xs-8">
+            <a href="#/auctions/{{ auction.key }}/item/{{ max_bid.item.key }}">
+                <h4>{{ max_bid.item.name }}</h4>
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-2">
+            <span class="bid-amount winning">
+                <span title="{{ auction.currencyCode }}">
+                    {{ auction.currencySymbol }}</span>
+                <span>{{ max_bid.maxAmount }}</span>
+            </span>
+        </div>
+        <div class="col-md-2 col-xs-2">
+            <a class="button pink-solid-button loading-span-button"
+               ng-class="{'active': max_bid.is_removing}"
+            ng-click="tools.removeMaxBid(max_bid)"
+            ><em>Delete</em></a>
+        </div>
+    </li>
+    <p ng-if="(tools.getInventoryMaxBidsCount() == 0)" >You have not set any max bids on items.</p>
+</ul>

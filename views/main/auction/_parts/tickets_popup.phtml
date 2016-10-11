@@ -13,8 +13,8 @@
                      data-handbid-ticket-price="10" data-handbid-ticket-step="1">
                     <div class="col-sm-8 ticket-part-container no-padding-left">
                         <h4 class="ticket-title"><span data-handbid-ticket-title="">Child Admission</span>
-                            &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                         title="USD">$</span><span
+                            &nbsp;&nbsp;<span class="ticket-price"><span
+                                                                         title="{{ vm.auction.currencyCode }}">{{ vm.auction.currencySymbol }}</span><span
                                     data-handbid-ticket-buynow="">10</span></span>
                         </h4>
 
@@ -58,8 +58,8 @@
                      data-handbid-ticket-price="1" data-handbid-ticket-step="1">
                     <div class="col-sm-8 ticket-part-container no-padding-left">
                         <h4 class="ticket-title"><span data-handbid-ticket-title="">Drink Ticket</span>
-                            &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                         title="USD">$</span><span
+                            &nbsp;&nbsp;<span class="ticket-price"><span
+                                                                         title="{{ vm.auction.currencyCode }}">{{ vm.auction.currencySymbol }}</span><span
                                     data-handbid-ticket-buynow="">1</span></span>
                         </h4>
 
@@ -105,8 +105,8 @@
                     <div class="col-sm-8 ticket-part-container no-padding-left">
                         <h4 class="ticket-title"><span
                                 data-handbid-ticket-title="">Early Bird Family Ticket</span>
-                            &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                         title="USD">$</span><span
+                            &nbsp;&nbsp;<span class="ticket-price"><span
+                                                                         title="{{ vm.auction.currencyCode }}">{{ vm.auction.currencySymbol }}</span><span
                                     data-handbid-ticket-buynow="">75</span></span>
                         </h4>
 
@@ -151,8 +151,8 @@
                      data-handbid-ticket-price="200" data-handbid-ticket-step="1">
                     <div class="col-sm-8 ticket-part-container no-padding-left">
                         <h4 class="ticket-title"><span data-handbid-ticket-title="">VIP Ticket</span>
-                            &nbsp;&nbsp;<span class="ticket-price"><span class="handbidAuctionCurrency"
-                                                                         title="USD">$</span><span
+                            &nbsp;&nbsp;<span class="ticket-price"><span
+                                                                         title="{{ vm.auction.currencyCode }}">{{ vm.auction.currencySymbol }}</span><span
                                     data-handbid-ticket-buynow="">200</span></span>
                         </h4>
 
@@ -193,7 +193,7 @@
         </div>
         <div class="row tickets-footer-row">
             <div class="col-sm-3 col-sm-offset-6">
-                <h3 class="total"><span class="handbidAuctionCurrency" title="USD">$</span><span
+                <h3 class="total"><span  title="{{ vm.auction.currencyCode }}">{{ vm.auction.currencySymbol }}</span><span
                         data-handbid-tickets-total="">0</span></h3>
                 <h5>Grand Total</h5>
             </div>
