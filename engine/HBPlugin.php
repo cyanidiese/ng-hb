@@ -51,9 +51,8 @@ class HBPlugin
         }
 
         $scripts = [
-            'handbid-details-map-js' => 'resources/js/details-map.js',
             'yii-node-socket-js'     => 'public/js/yii-node-socket.js',
-            'node-socket-manager-js' => 'public/js/node-socket-manager.js',
+//            'node-socket-manager-js' => 'public/js/node-socket-manager.js',
             'stripe-init-js'         => 'public/js/stripe-init.js',
             'smooch-init-js'         => 'public/js/smooch-init.js',
 
@@ -140,12 +139,23 @@ class HBPlugin
             })(); </script>
 
         <?php
+
+        $map_params = [
+            'v' => '3.exp',
+            'key' => 'AIzaSyAJsBZcOzH5mWubgqRYnefsSIN9aQtAsiI',
+            'libraries' => 'places',
+        ];
+
+        $map_url = add_query_arg($map_params, 'https://maps.googleapis.com/maps/api/js');
+
+        echo '<script async defer src="' . $map_url . '"></script>';
+
     }
 
     function getSocketUrl()
     {
-        $socketUrl = get_option('handbidSocketUrl', 'https://rest.hand.bid:3003');
-        $socketUrl = 'https://rest.hand.bid:3003';
+        $socketUrl = get_option('handbidSocketUrl', 'https://'.HB_REST.'rest.hand.bid:3003');
+        $socketUrl = 'https://'.HB_REST.'rest.hand.bid:3003';
         $socketUrl = (substr($socketUrl, -1) != "/") ? $socketUrl . "/" : $socketUrl;
 
         return $socketUrl;

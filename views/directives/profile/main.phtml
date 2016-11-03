@@ -1,4 +1,4 @@
-<div id="bidder-info-load" class="bidder-info-load">
+<div id="bidder-info-load" class="bidder-info-load" ng-show="profile">
     <div class="bidder-info-container" data-dashboard-profile-id="29551">
         <div class="container container-fluid underlined">
             <div class="row meta">
@@ -63,7 +63,7 @@
                     <a class="col-md-2 col-sm-3 col-xs-3 profile-purchases "
                        ng-if="(inventory)"
                        data-slider-nav-key="profile-purchases">
-                        <label>Purchases</label>
+                        <label>Your Cart</label>
                         <span data-handbid-stats-num-purchases="">{{ tools.inventoryPurchasesCount }}</span>
                     </a>
                     <a class="col-md-2 col-xs-12 total-spent"
@@ -89,8 +89,9 @@
                                 <li><a data-slider-nav-key="user-profile">User Profile</a></li>
                                 <li><a data-slider-nav-key="update-credit-card">Update Credit Card</a></li>
                                 <li><a data-slider-nav-key="bidder-notifications">Messages</a></li>
-                                <li><a data-slider-nav-key="see-my-receipt">View Receipts/Invoices <span
-                                            class="badge unpaidInvoicesCountContainer" style="">2</span></a></li>
+                                <li><a data-slider-nav-key="see-my-receipt">View Receipts/Invoices
+                                        <span class="badge unpaidInvoicesCountContainer" ng-show="(receipts && receipts.length)">{{receipts.length}}</span>
+                                    </a></li>
                                 <li><a href="/handbid-logout" class="handbid-logout-link">Logout</a></li>
                             </ul>
                         </div>

@@ -13,11 +13,12 @@
 
             @include('main.auction._parts.share_bar')
             <span class="buttons">
-            <a href="#" class="button pink-button register" data-handbid-connect="" style="display: none;">Register</a>
+            <a class="button pink-button register" data-handbid-connect="" ng-if="!vm.isAuthorized()">Register</a>
 
 
-<a class="button pink-button handbid-modal-link purchase-tickets" data-handbid-credit-cards-need=""
-   data-handbid-modal-key="tickets-form" data-handbid-tickets="">Buy Tickets</a>
+<a class="button pink-button handbid-modal-link purchase-tickets"
+   data-handbid-credit-cards-need=""
+   handbid-modal-link="tickets-form" data-handbid-tickets=""  ng-if="vm.isAuthorized()">Buy Tickets</a>
 
 
 @include('main.auction._parts.tickets_popup')
@@ -64,7 +65,7 @@
                         <div class="col-md-2 col-xs-2 sort-label">Sort By:</div>
                         <div class="col-md-4 col-xs-4 select-wrapper">
                             <select name="sort" ng-model="vm.items_sorting_type" ng-change="vm.changeItemsOrdering()">
-                                <option ng-repeat="option in vm.vm.items_sorting_vars"
+                                <option ng-repeat="option in vm.items_sorting_vars"
                                         ng-selected="(vm.items_sorting_type == option.value)"
                                         value="{{option.value}}">{{option.title}}</option>
                             </select>

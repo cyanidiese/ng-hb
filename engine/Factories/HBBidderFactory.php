@@ -37,16 +37,48 @@ class HBBidderFactory extends HBFactory
 
     public static function bidder()
     {
-        $auction = self::get('bidder/index', []);
+        $result = self::get('bidder/index', []);
 
-        return self::response($auction);
+        return self::response($result);
+    }
+
+    public static function receipts()
+    {
+        $result = self::get('receipt/index', []);
+
+        return self::response($result);
     }
 
     public static function inventory($auction_id)
     {
-        $auction = self::get('auction/myinventory/'.$auction_id, []);
+        $result = self::get('auction/myinventory/'.$auction_id, []);
 
-        return self::response($auction);
+        return self::response($result);
+    }
+
+    /*===================================================*/
+
+    public static function update($data)
+    {
+        $result = self::put('bidder/update', [], $data);
+
+        return self::response($result);
+    }
+
+    /*===================================================*/
+
+    public static function addCard($data)
+    {
+        $result = self::put('creditcard/create', [], $data);
+
+        return self::response($result);
+    }
+
+    public static function removeCard($card_id)
+    {
+        $result = self::delete('creditcard/delete/' . $card_id);
+
+        return self::response($result);
     }
 
     /*===================================================*/

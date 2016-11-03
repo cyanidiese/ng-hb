@@ -1,0 +1,27 @@
+<div class="handbid-form row"  ng-if="(vm.current_auth_screen == 'forgot-pass')">
+
+    <div class="col-md-10 col-md-offset-1 col-xs-12 center-aligned-text handbid-form-area">
+        <div class="row errorsRow to-hide-block" style="display: none;">
+            <div class="col-md-10 col-md-offset-1 col-xs-12 errorsContainer">
+                User with specified email was not found.
+            </div>
+        </div>
+
+        <h5>Enter your email and we will send you instructions on how to get
+            logged in.</h5>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+                <input placeholder="Email" type="text" id="emailOrPhoneToResetPass"
+                       name="username" value=""
+                       class="form-control cleanable-input">
+            </div>
+        </div>
+
+        <button type="submit" class="btn signup login-popup-link reset-password-link loading-span-button"
+                ng-click="vm.setCurrentAuthScreen('forgot-pass-sent')">
+            <span>Send Instructions</span>
+        </button>
+    </div>
+
+</div>

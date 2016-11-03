@@ -36,16 +36,16 @@ var handbidModalsMain;
 
     $(document).ready(function () {
 
-        $('.handbid-modal-link').live('click', function(e) {
-            e.preventDefault();
-
-            if(handbidMain.noticeIfNoCreditCard($(this))){
-                return false;
-            }
-
-            var key    = $(this).attr('data-handbid-modal-key');
-            handbidModals.showSingleModal(key);
-        });
+        //$('.handbid-modal-link').live('click', function(e) {
+        //    e.preventDefault();
+        //
+        //    if(handbidMain.noticeIfNoCreditCard($(this))){
+        //        return false;
+        //    }
+        //
+        //    var key    = $(this).attr('data-handbid-modal-key');
+        //    handbidModals.showSingleModal(key);
+        //});
 
         handbidModalsMain = handbidModals;
     });

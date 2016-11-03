@@ -1,0 +1,14 @@
+{
+  "name": "handbid-ng-plugin",
+  "version": "1.0.0",
+  "description": "Handbid plugin driven by AngularJS.",
+  "dependencies": {
+    "angular-socket-io": "~0.7.0",
+    "jquery": "~3.1",
+    "pnotify": "~3.0.0",
+    "satellizer": "~0.15.5"
+  },
+  "devDependencies": {
+    "gulp": "~3.9"
+  }
+}

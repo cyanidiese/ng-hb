@@ -1,0 +1,35 @@
+<div class="handbid-form row" ng-if="(vm.auction && (vm.current_auth_screen == 'process-payment'))">
+    <div class="col-xs-12 handbid-form-area">
+
+        <div class="process-container pay-for-purchased-containers">
+            <p class="process-message">
+                Ok to charge
+                <span class="payment-sum">
+                                <span class="handbidAuctionCurrency" title="{{ vm.auction.currencyCode }}"><?php echo $currencySymbol; ?></span>
+                                <span class="tickets-full-price">50</span>
+                            </span>
+                <span class="smaller-text">for purchases for</span>
+                <span data-auction-item>{{ vm.auction.name }} Tickets?</span>
+            </p>
+
+            <div class="cards-block no-cards-if-no-cards no-cards-on-file">
+                <form class="row cards-form">
+                    <div class="form-group col-sm-9">
+                        <select id="tickets-payment-card" class="form-control select-payment-card" name="payment-card"></select>
+                    </div>
+                    <button type="submit" id="hb-tickets-make-payment" class="btn col-sm-3 loading-span-button">
+                        <span>Pay now</span>
+                    </button>
+                </form>
+                <button class="pink-solid-button" id="hb-tickets-add-card">Add new card</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3 col-xs-6 buttons left-aligned">
+                <button class="btn btn-gray"  id="hb-pay-tickets-skip"><span>Back</span></button>
+            </div>
+        </div>
+    </div>
+
+</div>

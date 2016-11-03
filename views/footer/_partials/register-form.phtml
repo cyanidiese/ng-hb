@@ -1,0 +1,162 @@
+<div class="handbid-form row" ng-if="(vm.current_auth_screen == 'register-form')">
+
+    <div class="col-md-10 col-md-offset-1 col-xs-12 center-aligned-text handbid-form-area">
+        <div class="row errorsRow" style="display: none;">
+            <div class="col-xs-12 errorsContainer">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                <input id="reg-firstname" placeholder="First Name *" type="text" name="firstname" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field"
+                       data-copy-to="confirm-firstname"
+                       required
+                       data-required-message="First Name field is required">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Enter in Your First and Last Name"
+                   data-content="We need your name so we know what to call you and for your receipt at the end. Your identity (by default) will be concealed using a Paddle Number or Alias.">
+                    ?
+                </a>
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                <input id="reg-lastname" placeholder="Last Name *" type="text" name="lastname" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field"
+                       data-copy-to="confirm-lastname"
+                       required
+                       data-required-message="Last Name field is required">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Enter in Your First and Last Name"
+                   data-content="We need your name so we know what to call you and for your receipt at the end. Your identity (by default) will be concealed using a Paddle Number or Alias.">
+                    ?
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <input id="reg-email" placeholder="eMail" type="email" name="email" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field is-email"
+                       data-copy-to="confirm-email"
+                       data-not-email-message="Please, provide valid email address"
+                       required
+                       data-required-message="Email field is required">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Enter in Your Email Address"
+                   data-content="We will use your eMail to identify you and also to send you a receipt at the end of the auction. Don't worry, you won't end up on any list because of us. You can review our privacy policy for more details.">
+                    ?
+                </a>
+            </div>
+            <div class="form-group col-xs-6">
+                <input id="reg-address" placeholder="Address" type="text" name="address" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field"
+                       data-copy-to="confirm-address" onfocus="handbidMain.initGoogleAutocomplete('reg-address')">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Enter in Your Shipping Address"
+                   data-content="Please review our privacy policy for more details.">
+                    ?
+                </a>
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                <input id="reg-password" placeholder="Password (for use only on the webSite)" type="password"
+                       name="password" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field"
+                       data-copy-to="confirm-password"
+                       required
+                       data-required-message="Password field is required">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Create a Password"
+                   data-content="You will need a password to login on from Handbid.com. You will not need to use this password to login from the mobile apps or from the iPads. Please, ceep this password secure.">
+                    ?
+                </a>
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                <input id="reg-password-confirm" placeholder="Confirm your Password" type="password"
+                       name="password-confirm" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input"
+                       data-mismatch-message="Password mismatch">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Create a Password"
+                   data-content="You will need a password to login on from Handbid.com. You will not need to use this password to login from the mobile apps or from the iPads. Please, ceep this password secure.">
+                    ?
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                <select id="reg-phone-code" name="phone-code"
+                        class="col-xs-12 copyable-field"  data-copy-to="confirm-phone-code">
+                    <option ng-repeat="country in vm.countries" value='{{ country.code }}'>{{ country.name }}</option>
+
+                </select>
+
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                <input id="reg-phone-number" placeholder="Cell Phone *" type="text" name="phone-number" value=""
+                       class="col-xs-12 has-question-icon has-popover cleanable-input copyable-field"
+                       data-copy-to="confirm-phone-number"
+                       required
+                       data-required-message="Phone field is required">
+                <a class="has-question-icon has-popover"
+                   tabindex="-1"
+                   role="button"
+                   data-toggle="popover"
+                   data-placement="top"
+                   data-trigger="focus"
+                   title="Provide Your Cell Phone"
+                   data-content="If you intend to bid from your smartphone using the Handbid App, please provide number for that here and tell us what type of phone you have. We will send instructions to that phone on how to get setup.">
+                    ?
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <label for="reg-agree-terms" class="radio-label agree-terms-label">
+                    <input type="checkbox" id="reg-agree-terms" name="agree-terms" value="agree"
+                           required
+                           data-required-message="You must agree to the bidder terms and conditions">
+                    I agree to the <a target="_blank" href="https://handbid.com/terms-of-service/">bidder terms and conditions</a></label>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <a class="btn btn-info signup login-popup-link register-next" ng-click="vm.setCurrentAuthScreen('register-form-confirm')">CONTINUE</a>
+            </div>
+        </div>
+    </div>
+
+</div>

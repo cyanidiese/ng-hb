@@ -12,18 +12,30 @@
         return {
             getProfile: getProfile,
             getInventory: getInventory,
+            getReceipts: getReceipts,
             removeBid: removeBid,
+            createBidAll: createBid,
             createBid: createBid,
             createBuyNow: createBuyNow,
             createMaxBid: createMaxBid,
             createPurchase: createPurchase,
             isAuthorized: isAuthorized,
-            isBidConfirmRequired: isBidConfirmRequired
+            isBidConfirmRequired: isBidConfirmRequired,
+            updateProfile: updateProfile,
+            addCreditCard: addCreditCard,
+            removeCreditCard: removeCreditCard
         };
 
         function getProfile() {
 
             return $http.post(hb_routes.factories.profile.bidder).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getReceipts() {
+
+            return $http.post(hb_routes.factories.profile.receipts).then(function (response) {
                 return response.data;
             });
         }
@@ -45,6 +57,31 @@
         function isBidConfirmRequired() {
 
             return false;
+        }
+
+        //=========================================================================================
+
+        function updateProfile(data) {
+
+            return $http.post(hb_routes.factories.profile.update, data).then(function (response) {
+                return response.data;
+            });
+        }
+
+        //=========================================================================================
+
+        function addCreditCard(data) {
+
+            return $http.post(hb_routes.factories.profile.card.add, data).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function removeCreditCard(data) {
+
+            return $http.post(hb_routes.factories.profile.card.remove, data).then(function (response) {
+                return response.data;
+            });
         }
 
         //=========================================================================================

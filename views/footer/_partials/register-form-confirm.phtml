@@ -1,0 +1,54 @@
+<div class="handbid-form row" ng-if="(vm.current_auth_screen == 'register-form-confirm')">
+    <h4>Please confirm your information below</h4>
+    <div class="col-md-10 col-md-offset-1 col-xs-12 handbid-form-area">
+        <div class="row errorsRow" style="display: none;">
+            <div class="col-xs-12 errorsContainer">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <input id="confirm-firstname" placeholder="First Name" type="text" name="firstname" value=""
+                       class="col-xs-12  cleanable-input"
+                       required
+                       data-required-message="First Name field is required">
+            </div>
+            <div class="form-group col-xs-12">
+                <input id="confirm-lastname" placeholder="Last Name" type="text" name="lastname" value=""
+                       class="col-xs-12 cleanable-input"
+                       required
+                       data-required-message="Last Name field is required">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <input id="confirm-email" placeholder="eMail" type="email" name="email" value=""
+                       class="col-xs-12 cleanable-input is-email"
+                       data-not-email-message="Please, provide valid email address" >
+            </div>
+            <div class="form-group col-xs-12">
+                <input id="confirm-address" placeholder="Address" type="text" name="address" value=""
+                       class="col-xs-12 cleanable-input"
+                       onfocus="handbidMain.initGoogleAutocomplete('confirm-address')">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <select id="confirm-phone-code" name="phone-code"
+                        class="col-xs-4">
+                    <option ng-repeat="country in vm.countries" value='{{ country.code }}'>{{ country.name }}</option>
+                </select>
+                <input id="confirm-phone-number" placeholder="Cell Phone" type="text" name="phone-number"
+                       value=""
+                       class="col-xs-8 has-question-icon has-popover cleanable-input">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 center-aligned-text">
+                <a class="btn btn-info signup login-popup-link register-confirm" ng-click="vm.setCurrentAuthScreen('process-success')"><span>CONTINUE</span></a>
+            </div>
+        </div>
+    </div>
+</div>

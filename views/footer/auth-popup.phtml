@@ -1,0 +1,100 @@
+<div ng-controller="AuthPopupCtrl as vm" ng-cloak>
+
+    <div class="handbid-modal modal fade handbid-login-modal" tabindex="-1" role="dialog" data-handbid-modal-key="login-modal">
+        <div class="modal-dialog modal-lg">
+                <a href="#" class="modal-close" data-dismiss="modal" aria-label="Close">&times;</a>
+
+            <div class="container-fluid container-tab active-container">
+
+                <div class="row login-modal-head">
+                    <span class="login-modal-head-logo"></span>
+                    <h4 class="login-modal-head-title">{{ vm.popup_title }}</h4>
+                </div>
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.login-form')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.forgot-pass')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.forgot-pass-sent')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.register-form')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.register-form-confirm')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.purchase-tickets')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.confirm-purchase')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.process-payment')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.process-error')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                @include('footer._partials.process-success')
+
+                <!--####################################################################################-->
+                <!--####################################################################################-->
+
+                <div class="row links-to-other-tabs" ng-if="(!vm.isAuthorized() && vm.current_login_page)">
+                    <div class="col-xs-12 col-sm-6 single-link-to-other-tabs" ng-show="(vm.current_login_page != 'forgot')">
+                        <a class="login-popup-link" ng-click="vm.setCurrentAuthScreen('forgot-pass')">Forgot My Password</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 single-link-to-other-tabs" ng-show="(vm.current_login_page != 'register')">
+                        <a class="login-popup-link" ng-click="vm.setCurrentAuthScreen('register-form')">Register</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 single-link-to-other-tabs" ng-show="(vm.current_login_page != 'login')">
+                        <a class="login-popup-link" ng-click="vm.setCurrentAuthScreen('login-form')">Sign In</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-xs-12 modal-footer">
+                        <ul class="app-links">
+                            <li class="app-store">
+                                <a target="_blank" href="{{vm.apps.app_store}}">
+                                    Download from App Store
+                                </a>
+                            </li>
+                            <li class="google-play">
+                                <a target="_blank"  href="{{vm.apps.google_play}}">
+                                    Download from Google Play
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

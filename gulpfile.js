@@ -46,15 +46,20 @@ gulp.task('js', function() {
 
         'resources/app/services/services.js',
         'resources/app/services/IntermediatorService.js',
+        'resources/app/services/NoticesService.js',
+        'resources/app/services/SocketsService.js',
 
         'resources/app/directives/directives.js',
         'resources/app/directives/TitleDirective.js',
+        'resources/app/directives/ModalLinkDirective.js',
+        'resources/app/directives/GoogleAutocompleteDirective.js',
         'resources/app/directives/BreadcrumbsDirective.js',
         'resources/app/directives/PaginationDirective.js',
         'resources/app/directives/AuctionBoxDirective.js',
         'resources/app/directives/AuctionListDirective.js',
         'resources/app/directives/ItemBoxDirective.js',
         'resources/app/directives/ProfileDirective.js',
+        'resources/app/directives/ConnectLinkDirective.js',
 
         'resources/app/main/app.js',
 
@@ -66,6 +71,7 @@ gulp.task('js', function() {
         'resources/app/main/header/TitleCtrl.js',
         'resources/app/main/header/BreadcrumbsCtrl.js',
         'resources/app/main/header/ProfileCtrl.js',
+        'resources/app/main/footer/AuthPopupCtrl.js',
 
         'resources/app/main/routes.js'
     ])

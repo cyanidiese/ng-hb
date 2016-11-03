@@ -2050,7 +2050,7 @@ var handbidMain, connectMessage, modal_overlay, reload_overlay, confirm_bid_over
                                 remainingSymb = remainingBlock.val(),
                                 remaining = parseInt(remainingBlock.val());
                             quantityBlock.html(0);
-                            if (!connectedToSocket && remainingSymb != "-1" && remainingSymb != "∞" && handbid.in_array(data.successID, ticketID)) {
+                            if (remainingSymb != "-1" && remainingSymb != "∞" && handbid.in_array(data.successID, ticketID)) {
                                 remainingBlock.val(remaining - quantity);
                             }
                             return null;
@@ -4191,9 +4191,9 @@ var handbidMain, connectMessage, modal_overlay, reload_overlay, confirm_bid_over
         handbid.messageToAuctionManager();
         handbid.redirectFromResetedAuctionsCheck();
         handbid.detectIfNeedToContinuePayment();
-        setTimeout(function () {
-            handbid.checkSocketConnection(handbid)
-        }, 10000);
+        //setTimeout(function () {
+        //    handbid.checkSocketConnection(handbid)
+        //}, 10000);
 
         if ($('[data-handbid-item-key], [data-no-bids], [data-tags]').length > 0) {
             $('body').addClass('enable-handbid-fatal-error');
@@ -4212,7 +4212,7 @@ var handbidMain, connectMessage, modal_overlay, reload_overlay, confirm_bid_over
         //($('.edit-profile').length > 0) ? handbid.setupEditProfile() : '';
         //}
         //else {
-        ($('[data-handbid-connect]').length > 0) ? handbid.setupConnect() : '';
+        //($('[data-handbid-connect]').length > 0) ? handbid.setupConnect() : '';
         //}
         handbid.setupTutorialPopup();
 

@@ -16,6 +16,7 @@ class HBShortcodes extends StdClass
             "handbid_header_title" => "headerTitle",
             "handbid_breadcrumb" => "breadcrumbs",
             "handbid_bidder_profile" => "bidderProfile",
+            "handbid_bidder_login_form" => "loginRegisterForm",
             "handbid_auction_timer" => "auctionTimer",
         );
 
@@ -47,6 +48,11 @@ class HBShortcodes extends StdClass
     public static function bidderProfile($atts)
     {
         return HBView::view('header.profile');
+    }
+
+    public static function loginRegisterForm($atts)
+    {
+        return HBView::view('footer.auth-popup');
     }
 
     public static function auctionTimer($atts)

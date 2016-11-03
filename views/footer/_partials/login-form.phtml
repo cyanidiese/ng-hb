@@ -1,0 +1,53 @@
+<div class="handbid-form row" ng-if="(vm.current_auth_screen == 'login-form')">
+    <div class="row no-margin" style="display: none">
+        <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+            <h3>Handbid Bidder Login</h3>
+
+            <h4 ng-if="(vm.isAuthorized())">You are already logged in</h4>
+            <h4 ng-if="(vm.isAuthorized())"><a class="login-popup-link" href="/auctions/">Click here</a> to choose your auction!</h4>
+
+            <h4 ng-if="(!vm.isAuthorized())">Not sure if you have an account?
+                <a class="login-popup-link" ng-click="vm.setCurrentAuthScreen('register-form')">Click here</a> to get
+                started.</h4>
+        </div>
+    </div>
+
+    <form id="hb-login-form" class="form" method="POST" action="<?php echo get_admin_url() . 'admin-post.php'; ?>"
+          enctype="multipart/form-data">
+
+        <div class="col-md-10 col-md-offset-1 col-xs-12 handbid-form-area">
+            <div class="row isCurrentlyLoggingIn to-hide-block" style="display: none;">
+                <h3 class="col-xs-12 ">
+                    Logging in. Please wait.
+                </h3>
+            </div><div class="row errorsRow to-hide-block" style="display: none;">
+                <div class="col-md-10 col-md-offset-1 col-xs-12 errorsContainer">
+                    Specified combination not found.
+                </div>
+            </div>
+            <div class="row" ng-if="(!vm.isAuthorized())">
+                <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+                    <input placeholder="Email*" type="email" name="username" value=""
+                           class="form-control cleanable-input" id="hb-login-form-username">
+                </div>
+            </div>
+
+
+            <div class="row" ng-if="(!vm.isAuthorized())">
+                <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+                    <input placeholder="Password or Pin*" type="password" name="pin" value=""
+                           class="form-control cleanable-input"  id="hb-login-form-password">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-10 col-md-offset-1 col-xs-12 buttons">
+                    <a class="btn handbid-logout-link" href="/handbid-logout/" ng-if="(vm.isAuthorized())">Logout</a>
+                    <button type="submit" class="btn signup" id="hb-login-form-submit" ng-if="(!vm.isAuthorized())"><span>Sign In</span></button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>

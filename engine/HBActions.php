@@ -48,9 +48,15 @@ class HBActions
                 'profile' => [
                     'bidder' => 'profileFactoryGetBidder',
                     'inventory' => 'profileFactoryGetInventory',
+                    'receipts' => 'profileFactoryGetReceipts',
+                    'update' => 'profileFactoryUpdateProfile',
+                    'card' => [
+                        'add' => 'profileFactoryAddCard',
+                        'remove' => 'profileFactoryRemoveCard',
+                    ],
                     'bidding' => [
-                        'create_bid' => 'biddingFactoryCreateBid',
-                        'remove_bid' => 'biddingFactoryRemoveBid',
+                        'create_bid' => 'profileFactoryCreateBid',
+                        'remove_bid' => 'profileFactoryRemoveBid',
                     ],
                 ],
             ]
@@ -285,6 +291,13 @@ class HBActions
         exit;
     }
 
+    public static function profileFactoryGetReceipts()
+    {
+        echo HBBidderFactory::receipts();
+
+        exit;
+    }
+
     public static function profileFactoryGetInventory()
     {
         $params = self::getPostData();
@@ -294,7 +307,16 @@ class HBActions
         exit;
     }
 
-    public static function biddingFactoryCreateBid()
+    public static function profileFactoryUpdateProfile()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::update($params);
+
+        exit;
+    }
+
+    public static function profileFactoryCreateBid()
     {
         $params = self::getPostData();
 
@@ -303,11 +325,29 @@ class HBActions
         exit;
     }
 
-    public static function biddingFactoryRemoveBid()
+    public static function profileFactoryRemoveBid()
     {
         $params = self::getPostData();
 
         echo HBBidderFactory::removeBid($params['bid_id']);
+
+        exit;
+    }
+
+    public static function profileFactoryAddCard()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::addCard($params);
+
+        exit;
+    }
+
+    public static function profileFactoryRemoveCard()
+    {
+        $params = self::getPostData();
+
+        echo HBBidderFactory::removeCard($params['card_id']);
 
         exit;
     }

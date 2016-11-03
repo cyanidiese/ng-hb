@@ -32,9 +32,14 @@
         vm.filters_by_categories = getFiltersByCategories();
         vm.filters_by_categories_mobile = getFiltersByCategories(true);
 
+        vm.inventory = null;
+        vm.profile = [];
         vm.auction = false;
         vm.categories = [];
         vm.items = [];
+
+        vm.ticket_counts = {};
+        vm.tickets_price = 0;
 
         vm.displayed_items = [];
 
@@ -42,6 +47,12 @@
         vm.changeItemsType = changeItemsType;
         vm.changeItemsCategory = changeItemsCategory;
         vm.changeItemsOrdering = changeItemsOrdering;
+
+        vm.ticketBuyCountIncrease = ticketBuyCountIncrease;
+        vm.ticketBuyCountDecrease = ticketBuyCountDecrease;
+        vm.buySelectedTickets = buySelectedTickets;
+
+        vm.isAuthorized = isAuthorized;
 
         vm.tools = {
             isItemInWinning : isItemInWinning,
@@ -63,7 +74,9 @@
 
                 vm.intermediator.broadcastAuction(data);
 
-                prepareCategoriesAndItems()
+                prepareCategoriesAndItems();
+
+                vm.intermediator.askResendInventory();
 
             });
         }
@@ -79,6 +92,8 @@
                 angular.forEach(category.items, function (item) {
 
                     item.isForSaleItem = (item.isDirectPurchaseItem || item.isTicket);
+
+                    item.bidCount = parseInt((item.isForSaleItem ? item.quantitySold : item.bidCount));
 
                     if (item.isForSaleItem) {
                         item.currentPrice = item.buyNowPrice;
@@ -134,19 +149,7 @@
 
         }
 
-        function auctionHasAnyTickets() {
-
-            var has_tickets = false;
-
-            angular.forEach(vm.items, function (item)
-            {
-                if (item.isTicket) {
-                    has_tickets = true;
-                }
-            });
-
-            return has_tickets;
-        }
+        //##################################################
 
         function clearItemsSearch() {
             vm.items_search = '';
@@ -274,7 +277,85 @@
             return filters;
         }
 
+        //##################################################
 
+
+        function auctionHasAnyTickets() {
+
+            var has_tickets = false;
+
+            angular.forEach(vm.items, function (item)
+            {
+                if (item.isTicket) {
+                    has_tickets = true;
+                }
+            });
+
+            return has_tickets;
+        }
+
+        function removeNonTicketsCounts() {
+
+            angular.forEach(vm.items, function (item) {
+
+                if (!item.isTicket) {
+                    delete vm.ticket_counts[item.id];
+                }
+            });
+        }
+
+        function ticketBuyCountIncrease(item) {
+
+            if(vm.ticket_counts[item.id] == undefined){
+                vm.ticket_counts[item.id] = {
+                    name: item.name,
+                    description: item.description,
+                    userId: vm.profile.id,
+                    auctionId: vm.auction.id,
+                    itemId: item.id,
+                    amount: item.buyNowPrice,
+                    quantity: 0
+                };
+            }
+
+            if((item.inventoryRemaining == -1) || ((vm.ticket_counts[item.id].quantity + 1) <= item.inventoryRemaining)){
+                vm.ticket_counts[item.id].quantity++;
+
+                recalculateTotal();
+            }
+
+        }
+
+        function ticketBuyCountDecrease(item) {
+
+            if((vm.ticket_counts[item.id] != undefined) && ((vm.ticket_counts[item.id].quantity - 1) >= 0)){
+                vm.ticket_counts[item.id].quantity--;
+
+                recalculateTotal();
+            }
+
+        }
+
+        function recalculateTotal() {
+
+            var tickets_price = 0;
+
+            angular.forEach(vm.ticket_counts, function (item) {
+
+                tickets_price += item.quantity * item.amount;
+            });
+
+            vm.tickets_price = tickets_price;
+
+        }
+
+        function buySelectedTickets() {
+
+
+
+        }
+
+        //##################################################
 
         function isItemInWinning(item_id) {
 
@@ -282,10 +363,45 @@
 
         }
 
-        function isItemInLosing(item_id) {
+        function isItemInLosing(item_id, inventory) {
 
             return vm.intermediator.isItemInLosing(item_id, vm.inventory);
         }
+
+        //##################################################
+
+        function isAuthorized() {
+
+            return false;
+
+        }
+
+        //##################################################
+
+        function socketUpdateItem(data) {
+
+            if(vm.items)
+            {
+                angular.forEach(vm.items, function(item, key)
+                {
+                    if((item.id == data.values.id))
+                    {
+                        angular.forEach(data.attributes, function(value)
+                        {
+                            if((item[value] != undefined) && (data.values[value] != undefined))
+                            {
+                                item[value] = data.values[value];
+                            }
+                        });
+
+                    }
+                    vm.items[key] = item;
+                });
+
+            }
+        }
+
+        //##################################################
 
 
         $scope.$watch('vm.items_type + vm.items_category + vm.items_search', function (current, original) {
@@ -295,6 +411,8 @@
         $scope.$watch('vm.items', function (current, original) {
             vm.filters_by_type = getFiltersByType();
             vm.filters_by_type_mobile = getFiltersByType(true);
+            removeNonTicketsCounts();
+            filterItems();
         });
 
         $scope.$watch('vm.categories', function (current, original) {
@@ -306,6 +424,20 @@
         $scope.$on('inventory-updated', function(event, args) {
 
             vm.inventory = args;
+
+        });
+
+
+        $scope.$on('profile-updated', function(event, args) {
+
+            vm.profile = args;
+
+        });
+
+
+        $scope.$on('event.item', function(event, args) {
+
+            socketUpdateItem(args);
 
         });
     }

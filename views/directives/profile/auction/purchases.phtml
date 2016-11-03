@@ -20,3 +20,129 @@
     </li>
     <p ng-if="(tools.getInventoryPurchasesCount() == 0)" >You have not purchased any items.</p>
 </ul>
+<ul class="simple-list handbid-list-of-purchase-totals"
+    ng-if="inventory.purchases.length">
+    <li class="row">
+        <div class="col-xs-0 col-md-5"></div>
+        <div class="col-xs-7 col-md-4">
+            <h4 class="quantity-total">Total Purchases</h4>
+        </div>
+        <div class="col-xs-5 col-md-3">
+                                    <span class="bid-amount winning">
+                                        <span class="handbidAuctionCurrency" title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                                        <span class="handbidInventoryTotalPurchases"><?php echo $totalPurchases; ?></span>
+                                    </span>
+        </div>
+    </li>
+    <li class="row auctionPremiumRow"
+        data-auction-tax-rate="<?php echo esc_js($auction->taxRate / 10000); ?>"
+        data-auction-tax-label="<?php echo esc_js($auction->taxLabel); ?>"
+        style="<?php echo (!empty($auction->taxRate) and ($auction->taxRate != 0)) ? '' : ' display:none ';?>">
+        <div class="col-xs-0 col-md-5"></div>
+        <div class="col-xs-7 col-md-4">
+            <h4 class="quantity-total"><?php echo $auction->taxLabel; ?></h4>
+        </div>
+        <div class="col-xs-5 col-md-3">
+                                    <span class="bid-amount winning">
+                                        <span class="handbidAuctionCurrency" title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                                        <span class="inventoryPremium"
+                                        ><?php
+                                            $premium = round ($totalPurchases * ($auction->taxRate / 10000), 2);
+                                            echo $premium;
+                                            ?></span>
+                                    </span>
+        </div>
+    </li>
+    <li class="row itemsTaxRow"
+        style="<?php echo ($itemsTax > 0) ? '' : ' display:none ';?>">
+        <div class="col-xs-0 col-md-5"></div>
+        <div class="col-xs-7 col-md-4">
+            <h4 class="quantity-total">Item Tax</h4>
+        </div>
+        <div class="col-xs-5 col-md-3">
+                                    <span class="bid-amount winning">
+                                        <span class="handbidAuctionCurrency" title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                                        <span class="itemsTaxTotal"
+                                        ><?php
+                                            $itemsTax = round ($itemsTax, 2);
+                                            echo $itemsTax;
+                                            ?></span>
+                                    </span>
+        </div>
+    </li>
+    <li class="row payments-list"
+        ng-if="(amount_paid)">
+            <div class="col-xs-0 col-md-4"  ng-repeat-start="payment in inventory.payments"></div>
+            <div class="col-xs-7 col-md-5">
+                <h4 class="quantity-total">Payment Applied: {{ getPaymentTitle(payment }}
+                    <span>{{ payment.datetime }}</span></h4>
+            </div>
+            <div class="col-xs-5 col-md-3" ng-repeat-end>
+                <span class="bid-amount winning">
+                    <span class="handbidAuctionCurrency"
+                          title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                    <span
+                        class="handbidInventorySinglePaymentAmount">{{ payment.amount }}</span>
+                </span>
+            </div>
+    </li>
+    <pre>{{ inventory.payments }}</pre>
+    <li class="row">
+        <?php
+        $balanceDue = $totalPurchases + $premium + $itemsTax - $amountPaid;
+        ?>
+        <div class="col-xs-0 col-md-5"></div>
+        <div class="col-xs-7 col-md-4">
+            <h4 class="quantity-total">Balance Due</h4>
+        </div>
+        <div class="col-xs-5 col-md-3">
+            <span class="bid-amount losing">
+                <span class="handbidAuctionCurrency" title="{{ auction.currencyCode }}">{{ auction.currencySymbol }}</span>
+                <span class="handbidInventoryBalanceDue"><?php echo $balanceDue; ?></span>
+            </span>
+        </div>
+    </li>
+    <li class="row balanceDuePaymentCards" style="<?php echo ($balanceDue > 0 ) ? '' : ' display:none ' ;?>">
+
+        <div class="unpaidControls row receipt-payment-block <?php echo (intval($auction->enableCreditCardSupport))?"":" invoiceNoCCAllowed "?>">
+
+            <div class="col-xs-2 hideIfNoCCAllowed">&nbsp;</div>
+
+            <div class="col-xs-3 hideIfNoCCAllowed">
+                <a class="buy-now green-solid-button receipt-action-button col-md-12"
+                   onclick="handbidMain.scrollToInvoices()"
+                ><span>View Invoice Details</span></a>
+            </div>
+
+            <div class="col-xs-4 hideIfNoCCAllowed">
+                <select class="select-payment-card col-md-12"
+                        style="<?php echo (!count($creditCards)) ? " display:none; " : ""; ?>">
+                    <?php
+                    if (count($creditCards)) {
+                        foreach ($creditCards as $i => $creditCard) {
+                            echo "<option data-option-val='" . $creditCard->id . "' value='" . $creditCard->id . "' " . selected($i, 0, false) . ">" . $creditCard->nameOnCard . " (xxxx xxxx xxxx " . $creditCard->lastFour . ")</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-xs-3 hideIfNoCCAllowed">
+                <a class="buy-now green-solid-button receipt-action-button make-payment-button col-md-12 loading-span-button"
+                   data-auction-id="<?php echo $auction->id; ?>"
+                   data-inventory-payment-button
+                   data-make-payment-nonce="<?php echo apply_filters("handbid_create_nonce", date("d.m.Y") . "make_receipt_payment"); ?>"
+                   data-handbid-credit-cards-need
+                    <?php if (!count($creditCards)) { ?> data-handbid-credit-cards-required <?php } ?>
+                    <?php if (isset($auction->requireAddresstoPay) and intval($auction->requireAddresstoPay)) { ?> data-require-address-to-pay <?php } ?>
+                ><span>Make Payment</span></a>
+            </div>
+
+            <div class="col-xs-12  margin-bottom receipt-payment-block showIfNoCCAllowed">
+                <div class="col-xs-12">
+                    <h4>Payments have been disabled through the site. Contact the auction manager to pay.</h4>
+                </div>
+            </div>
+        </div>
+
+    </li>
+</ul>

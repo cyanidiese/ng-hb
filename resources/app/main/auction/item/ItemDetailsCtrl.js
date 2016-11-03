@@ -85,6 +85,8 @@
                     vm.item.bids = [];
                 }
 
+                vm.intermediator.askResendInventory();
+
             });
         }
 
@@ -272,7 +274,7 @@
 
         function biddingBuyNow() {
             if(doingNoAction()) {
-console.log(vm.profile);
+
                 vm.isBuyingNow = true;
                 profile.createBuyNow(vm.profile.id, vm.item.auction.id, vm.item.id, vm.item.buyNowPrice).then(function (data) {
                     vm.isBuyingNow = false;
@@ -299,6 +301,23 @@ console.log(vm.profile);
 
                 });
                 console.log('=======bidding Purchase=========');
+            }
+        }
+
+        //##################################################
+
+        function socketUpdateItem(data) {
+
+            if(vm.item && vm.item.id && (vm.item.id == data.values.id))
+            {
+                angular.forEach(data.attributes, function(value)
+                {
+                    if((vm.item[value] != undefined) && (data.values[value] != undefined))
+                    {
+                        vm.item[value] = data.values[value];
+                    }
+                });
+
             }
         }
 
@@ -342,6 +361,14 @@ console.log(vm.profile);
         $scope.$on('profile-updated', function(event, args) {
 
             vm.profile = args;
+
+        });
+
+
+        $scope.$on('event.item', function(event, args) {
+
+            //socketUpdateItem(args);
+            getItem();
 
         });
     }

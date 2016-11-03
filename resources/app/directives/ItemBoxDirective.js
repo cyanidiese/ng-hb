@@ -19,6 +19,17 @@
             replace: true,
             link: function($scope, elem, attr, ctrl) {
 
+                $scope.recheckItemProperties = function(item){
+                    $scope.leftText = $scope.getLeftText(item);
+                    $scope.leftValue = $scope.getLeftValue(item);
+                    $scope.rightClass = $scope.getRightClass(item);
+                    $scope.rightText = $scope.getRightText(item);
+                    $scope.rightValue = $scope.getRightValue(item);
+                    $scope.rightValue = $scope.getRightValue(item);
+                    $scope.itemInWinning = $scope.isItemInWinning(item);
+                    $scope.itemInLosing = $scope.isItemInLosing(item);
+                };
+
                 $scope.getLeftText = function(item){
                     return (item.isForSaleItem ? (item.isDonation ? 'Donated' : 'Sold') : 'Bids');
                 };
@@ -54,20 +65,13 @@
 
                 $scope.$watch('item', function (current, original)
                 {
-                    $scope.leftText = $scope.getLeftText(current);
-                    $scope.leftValue = $scope.getLeftValue(current);
-                    $scope.rightClass = $scope.getRightClass(current);
-                    $scope.rightText = $scope.getRightText(current);
-                    $scope.rightValue = $scope.getRightValue(current);
-                    $scope.rightValue = $scope.getRightValue(current);
-                    $scope.itemInWinning = $scope.isItemInWinning(current);
-                    $scope.itemInLosing = $scope.isItemInLosing(current);
+                    $scope.recheckItemProperties(current);
                 });
 
                 $scope.$watch('inventory', function (current, original)
                 {
-                    $scope.itemInWinning = $scope.isItemInWinning(current);
-                    $scope.itemInLosing = $scope.isItemInLosing(current);
+                    $scope.itemInWinning = $scope.isItemInWinning($scope.item);
+                    $scope.itemInLosing = $scope.isItemInLosing($scope.item);
                 });
 
 
